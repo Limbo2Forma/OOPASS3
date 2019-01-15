@@ -13,7 +13,7 @@ istream &operator >> (istream &get, poly &p) {
 	getline(get, p.input);
 	p.sstr.str("");
 	p.sstr << p.input;
-	p.input = "";
+	p.input = ""; // NAM HAHA
 	while (!p.sstr.eof()) {
 		p.sstr >> p.output;
 		p.input = p.input + p.output;
