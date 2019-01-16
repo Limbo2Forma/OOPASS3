@@ -5,6 +5,8 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.Font;
+
+import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
@@ -13,23 +15,25 @@ public class FullCalendarView {
 
     private ArrayList<Day> allCalendarDays = new ArrayList<>(35);
     private VBox view;
-    private Text calendarTitle;
+    private Text calendarTitle = new Text();
     private YearMonth currentYearMonth;
+    public LocalDate chooseDate = LocalDate.now();
 
-    /**
-     * Create a calendar view
-     * @param yearMonth year month to create the calendar of
-     */
+    //Create a calendar view
+    //@param yearMonth year month to create the calendar of
 
     // Create calendarTitle and buttons to change current month
     private HBox title(){
-        calendarTitle = new Text();
         Button previousMonth = new Button("<<");
         previousMonth.setOnAction(e -> previousMonth());
         Button nextMonth = new Button(">>");
         nextMonth.setOnAction(e -> nextMonth());
-        HBox titleBar = new HBox(previousMonth, calendarTitle, nextMonth);
-        titleBar.setAlignment(Pos.BASELINE_CENTER);
+        Region region1 = new Region();
+        HBox.setHgrow(region1, Priority.ALWAYS);
+
+        Region region2 = new Region();
+        HBox.setHgrow(region2, Priority.ALWAYS);
+        HBox titleBar = new HBox(previousMonth,region1,calendarTitle,region2,nextMonth);
 
         return titleBar;
     }
@@ -77,13 +81,10 @@ public class FullCalendarView {
         view = new VBox(titleBar, daylabels, calendar);
     }
 
-    /**
-     * Set the days of the calendar to correspond to the appropriate date
-     * @param yearMonth year and month of month to render
-     */
+        //Set the days of the calendar to correspond to the appropriate date
+        //@param yearMonth year and month of month to render
 
-
-    public void populateCalendar(YearMonth yearMonth) {
+    private void populateCalendar(YearMonth yearMonth) {
         // Get the date we want to start with on the calendar
         LocalDate calendarDate = LocalDate.of(yearMonth.getYear(), yearMonth.getMonthValue(), 1);
         // Dial back the day until it is SUNDAY (unless the month starts on a sunday)
@@ -117,20 +118,18 @@ public class FullCalendarView {
             calendarDate = calendarDate.plusDays(1);
         }
         // Change the title of the calendar
-        calendarTitle.setText(yearMonth.getMonth().toString() + " " + yearMonth.getYear());
+        this.calendarTitle.setText(yearMonth.getMonth().toString() + " " + yearMonth.getYear());
     }
 
-    /**
-     * Move the month back by one. Repopulate the calendar with the correct dates.
-     */
+
+    // Move the month back by one. Repopulate the calendar with the correct dates.
     private void previousMonth() {
         currentYearMonth = currentYearMonth.minusMonths(1);
         populateCalendar(currentYearMonth);
     }
 
-    /**
-     * Move the month forward by one. Repopulate the calendar with the correct dates.
-     */
+
+    // Move the month forward by one. Repopulate the calendar with the correct dates.
     private void nextMonth() {
         currentYearMonth = currentYearMonth.plusMonths(1);
         populateCalendar(currentYearMonth);
@@ -140,6 +139,11 @@ public class FullCalendarView {
         return view;
     }
 
+    public void sendSignal(LocalDate date){
+        //send
+        date.toString();
+    }
+
     public ArrayList<Day> getAllCalendarDays() {
         return allCalendarDays;
     }
@@ -147,16 +151,15 @@ public class FullCalendarView {
     public void setAllCalendarDays(ArrayList<Day> allCalendarDays) {
         this.allCalendarDays = allCalendarDays;
     }
+
     private class Day extends StackPane {
 
         // Date associated with this pane
         private LocalDate date;
         private boolean clicked = false;
 
-        /**
-         * Create a anchor pane node. Date is not assigned in the constructor.
-         * @param children children of the anchor pane
-         */
+        //Create a anchor pane node. Date is not assigned in the constructor.
+        //@param children children of the anchor pane
 
         public void setClicked(boolean b){
             this.clicked = b;
@@ -171,11 +174,13 @@ public class FullCalendarView {
             this.setOnMouseClicked(e -> {
                 setClicked(true);
                 populateCalendar(currentYearMonth);
+                sendSignal(this.date);
+                chooseDate = this.date;
             });
         }
 
         public LocalDate getDate() {
-            return date;
+            return this.date;
         }
 
         public void setDate(LocalDate date) {

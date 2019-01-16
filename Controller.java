@@ -1,14 +1,11 @@
-import javafx.fxml.FXML;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-
+import java.time.LocalDate;
 import java.time.YearMonth;
 
 public class Controller {
     FullCalendarView calendarView = new FullCalendarView(YearMonth.now());
     // Get the pane to put the calendar on
-    public VBox view(){
-        return calendarView.getView();
+    public void receiverSignal(String str){
+        //receive
+        System.out.printf(str);
     }
-    @FXML Pane calendarPane;
 }
