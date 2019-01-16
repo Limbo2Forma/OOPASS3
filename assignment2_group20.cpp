@@ -15,7 +15,7 @@ void printStudentId() {
 	cout << "s3574915, s3574915@rmit.edu.vn, Minh, Nguyen" << endl;
 }
 
-void checkNumInputs(int argc, char *argv[]) {
+void checkNumInputs(int argc, char *argv[]) { //TEST
 	bool check1 = true, check2 = true;
 	if (argc == 2) {
 		check1 = strcmp(argv[1], "0");
