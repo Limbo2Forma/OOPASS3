@@ -4,10 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
@@ -41,12 +38,14 @@ public class EventController implements Initializable{
     //ObservableList<Event> data = FXCollections.observableArrayList();
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.nameCol.setCellValueFactory(new PropertyValueFactory<Event, String>("name"));
+        this.nameCol.setCellValueFactory(new PropertyValueFactory<Event,String>("name"));
         this.venueCol.setCellValueFactory(new PropertyValueFactory<Event,String>("venue"));
         this.timeCol.setCellValueFactory(new PropertyValueFactory<Event,String>("time"));
         this.dateCol.setCellValueFactory(new PropertyValueFactory<Event,String>("date"));
 
         tableView.setItems(getEvent());
+
+        tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
     public ObservableList<Event> getEvent(){
@@ -54,11 +53,27 @@ public class EventController implements Initializable{
         return data;
     }
     public void addEvent(){
-        //Event entry = new Event(name.getText(),venue.getText(),time.getText(),date.getValue().toString());
-        tableView.getItems().add(new Event(name.getText(),venue.getText(),time.getText(),date.getValue().toString()));
-        //tableView.setItems(data);
+        Event entry = new Event(name.getText(),venue.getText(),time.getText(),date.getValue().toString());
+        tableView.getItems().add(entry);
         //System.out.println(entry.eName + entry.eTime + entry.eVenue + entry.eDate);
     }
+
+    public void deleteEvent(){
+        ObservableList<Event> selectedEvents, allEvents;
+        allEvents = tableView.getItems();
+        selectedEvents = tableView.getSelectionModel().getSelectedItems();
+        for (Event event : selectedEvents){
+            allEvents.remove(event);
+        }
+    }
+
+    public void printData(){
+        ObservableList<Event> allEvents = tableView.getItems();
+        for (Event event : allEvents){
+            System.out.println(event.getName());
+        }
+    }
+
 
 
 }
