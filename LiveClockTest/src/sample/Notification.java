@@ -1,5 +1,6 @@
 package sample;
 import java.util.Properties;
+import java.util.regex.Pattern;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -47,4 +48,28 @@ public class Notification {
     }
 //        sendEmail("s3695424@rmit.edu.vn,s3678436@rmit.edu.vn,s3695336@rmit.edu.vn,s3695275@rmit.edu.vn,s3678505@rmit.edu.vn",
 //                "Lời kêu gọi","Tôi nói đồng bào nghe rõ không\n"+"Đừng rep mail này nha");
+
+    public boolean checkMultiEmail(String emails){
+        String[] arr = emails.split(",");
+        int length = arr.length;
+            for (int i = 0; i < length; i++) {
+                if (!isValidEmailAddress(arr[i])){
+                    return false;
+                }
+            }
+        return true;
+    }
+
+    private boolean isValidEmailAddress(String email)
+    {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                "A-Z]{2,7}$";
+
+        Pattern pat = Pattern.compile(emailRegex);
+        if (email == null)
+            return false;
+        return pat.matcher(email).matches();
+    }
 }

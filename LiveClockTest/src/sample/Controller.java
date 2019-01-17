@@ -49,6 +49,9 @@ public class Controller {
     private TextField notiMin;
 
     @FXML
+    private TextArea email;
+
+    @FXML
     public void setEvent(){     //register Event into ArrayList
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDateTime currentTime = LocalDateTime.now().withSecond(0).withNano(0);
@@ -103,7 +106,10 @@ public class Controller {
             this.errorMessage = this.errorMessage + "Invalid end time input\n" +
                     "Please check if hours input are correct, include AM/PM.\n\n";
         }
-        String guestList = "";  //not have yet currently
+        String guestList = email.getText();  //not have yet currently, add owner mail into the list also
+        if (!noti.checkMultiEmail(guestList) && !guestList.equals("")){
+            this.errorMessage = this.errorMessage + "Invalid email address.\n\n";
+        }
 
         if (this.errorMessage.equals("")){  //print out event created and add created event to arrayList
             list.add(new Event(title,startTime,endTime,owner,location,notiTime,guestList,describe));
@@ -161,9 +167,9 @@ public class Controller {
         //use timeline to loop after 1 second
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             LocalDateTime currentTime = LocalDateTime.now().withSecond(0).withNano(0);
-            try {
+            if (!list.isEmpty()){
                 for (int i = 0; i < 10; i++) {  //scan all event stored in arrayList
-                    if (list.get(i).getNotifyTime().isEqual(currentTime)){
+                    if (list.get(i).getNotifyTime().isEqual(currentTime)) {
                         //get an event is noti time, yeah
                         System.out.println("Its time boi " + count);
                         list.remove(i);//remove event after job done
@@ -171,8 +177,6 @@ public class Controller {
                         i--;    //roll back index by 1 to inspect next element.
                     }
                 }
-            } catch (Exception error){
-                //System.out.println("some error idk");
             }
             time.setText(currentTime.format(this.formatter));
         }),

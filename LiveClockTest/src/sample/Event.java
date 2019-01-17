@@ -97,10 +97,11 @@ public class Event {
 
             this.notifyTime = startTime.minusMinutes(notiTime);
     }
-    private String composeSubject(){
-        return title + " start at " + startTime.format(formatter) + " end at " + endTime;
+    public String composeSubject(){
+        return "Event " + title + " start at " + startTime.format(formatter) + " end at " + endTime;
     }
-    private String composeMessage(){
+    public String composeMessage(){
+
         return "Event at " + location + " create by " + owner + "\n\n" + description;
     }
 

@@ -134,15 +134,11 @@
             <Font size="20.0" />
          </font>
       </TextField>
-      <ComboBox fx:id="guestEmail" layoutX="801.0" layoutY="248.0" prefHeight="31.0" prefWidth="247.0" />
-      <Label layoutX="673.0" layoutY="203.0" text="Guest List">
+      <Label layoutX="673.0" layoutY="152.0" text="Guest List (email,email,email,..)">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <TextField fx:id="addEmail" layoutX="801.0" layoutY="206.0" prefHeight="31.0" prefWidth="225.0" />
-      <Button fx:id="addGuest" layoutX="1048.0" layoutY="206.0" mnemonicParsing="false" text="Add guest" />
-      <Button fx:id="removeGuest" layoutX="1061.0" layoutY="248.0" mnemonicParsing="false" text="Remove" />
       <Button fx:id="addEvent" layoutX="914.0" layoutY="579.0" mnemonicParsing="false" onMouseClicked="#setEvent" prefHeight="54.0" prefWidth="225.0" text="Add Event" />
       <TextField id="eventTitle" fx:id="eventTitle" layoutX="199.0" layoutY="143.0" prefHeight="54.0" prefWidth="424.0">
          <font>
@@ -165,5 +161,6 @@
       </Label>
       <TextArea fx:id="locate" layoutX="83.0" layoutY="473.0" prefHeight="83.0" prefWidth="478.0" />
       <DatePicker fx:id="endDate" layoutX="330.0" layoutY="362.0" prefHeight="31.0" prefWidth="225.0" />
+      <TextArea fx:id="email" layoutX="673.0" layoutY="188.0" prefHeight="83.0" prefWidth="462.0" wrapText="true" />
    </children>
 </Pane>
