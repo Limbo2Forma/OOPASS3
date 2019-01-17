@@ -114,7 +114,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField id="notiMin" fx:id="notiMin" layoutX="267.0" layoutY="413.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="63.0" promptText="0">
+      <TextField id="notiMin" fx:id="notiMin" layoutX="267.0" layoutY="413.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="63.0" promptText="0" text="0">
          <font>
             <Font size="20.0" />
          </font>
