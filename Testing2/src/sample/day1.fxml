@@ -68,7 +68,9 @@
    <bottom>
       <Pane prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="268.0" layoutY="10.0" mnemonicParsing="false" onAction="#addEvent" text="Add event" />
+            <Button layoutX="167.0" layoutY="10.0" mnemonicParsing="false" onAction="#addEvent" text="Add event" />
+            <Button layoutX="267.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteEvent" text="Delete event" />
+            <Button layoutX="379.0" layoutY="10.0" mnemonicParsing="false" onAction="#printData" text="Print" />
          </children>
       </Pane>
    </bottom>
