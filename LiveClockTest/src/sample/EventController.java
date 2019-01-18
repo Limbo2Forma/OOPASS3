@@ -20,7 +20,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class EventController {
-    private EmailNotification noti = new EmailNotification();
+    private Notification noti = new Notification();
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a dd/MM/yyyy");
     private String errorMessage = "";
     private ArrayList<Event> list = new ArrayList<>();
@@ -137,25 +137,8 @@ public class EventController {
         } else {
             //send pop up notification error message
             System.out.println(errorMessage);
-            sendNotification("Error input",errorMessage);
+            noti.sendNotification("Error input",errorMessage);
             errorMessage = "";
-        }
-    }
-
-    //send pop up notification
-    private void sendNotification(String title, String message){
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("notifyPopUp.fxml"));
-            Parent root1 = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setResizable(false);
-            stage.setScene(new Scene(root1));
-            stage.setTitle(title);
-            NotiController controller = fxmlLoader.getController();
-            controller.setMsg(message);
-            stage.show();
-        } catch (Exception ioe){
-            System.out.println("ioe error");
         }
     }
 
@@ -163,7 +146,7 @@ public class EventController {
     private void showNotification(Event event){
         String title = "Notify event " + event.getTitle();
         String message = event.composeSubject() + "\n\n"+ event.composeMessage();
-        sendNotification(title,message);
+        noti.sendNotification(title,message);
     }
 
     //set DatePicker formatting to dd/MM/yyyy
