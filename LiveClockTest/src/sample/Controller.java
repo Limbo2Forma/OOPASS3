@@ -4,8 +4,13 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.util.StringConverter;
 
@@ -19,6 +24,7 @@ public class Controller {
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a dd/MM/yyyy");
     private String errorMessage = "";
     private int count = 0;
+    private Main popUp;
     private ArrayList<Event> list = new ArrayList<Event>();
 
     @FXML
@@ -92,10 +98,11 @@ public class Controller {
             this.errorMessage = this.errorMessage + "Invalid notification minute format.\n\n";
         }
         //get end event time
-        String endTime = endHrs.getValue() + " " + endAmPm.getValue() + " "
-                + endDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        String endTime = "";
         System.out.println(endTime);
         try{
+            endTime = endHrs.getValue() + " " + endAmPm.getValue() + " "
+                    + endDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
             LocalDateTime end = LocalDateTime.parse(endTime, this.formatter);
             if (end.isBefore(startTime)){   //error msg if end date is sooner than start date
                 this.errorMessage = this.errorMessage + "Invalid end time input\n" +
@@ -112,27 +119,44 @@ public class Controller {
         }
 
         if (this.errorMessage.equals("")){  //print out event created and add created event to arrayList
-            list.add(new Event(title,startTime,endTime,owner,location,notiTime,guestList,describe));
-            System.out.println("Event no: " + count + "\n"
-                                +"Event create time" + currentTime.toString() + "\n"
-                                +"Event title: " + list.get(count).getTitle() + "\n"
-                                +"Event startTime: " + list.get(count).getStartTime().toString() + "\n"
-                                +"Event endTime: " + list.get(count).getEndTime() + "\n"
-                                +"Event Owner: " + list.get(count).getOwner() + "\n"
-                                +"Event location: " + list.get(count).getLocation() + "\n"
-                                +"Event Notify time: " + list.get(count).getNotifyTime().toString() + "\n"
-                                +"Event describe: " + list.get(count).getDescription() + "\n");
-            count++;
-            System.out.println("all good boi");
+            addToSort(new Event(title,startTime,endTime,owner,location,notiTime,guestList,describe));
         } else {
             sendError();
         }
-
     }
 
-    private void sendError(){   //Placeholder print to console, will change to pop up later
-        System.out.printf(errorMessage);
+    private void addToSort(Event event){
+        if (list.isEmpty()){
+            list.add(event);
+        } else {
+            int i = list.size();
+            LocalDateTime eventTime = event.getNotifyTime();
+            while (i > 0 && list.get(i - 1).getNotifyTime().isAfter(eventTime)){
+                i--;
+            }
+            list.add(i,event);
+        }
+    }
+
+    @FXML
+    private void sendError(){   //Placeholder print to console, will change to pop up later;
+        System.out.println(errorMessage);
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("popup.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Error Input");
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (Exception exception){
+
+        }
         errorMessage = "";
+    }
+
+    @FXML
+    private void closePopUp(){
+        popUp.popUp.hide();
     }
 
     private void setDatePickerFormat(){     //set date format
@@ -168,15 +192,15 @@ public class Controller {
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             LocalDateTime currentTime = LocalDateTime.now().withSecond(0).withNano(0);
             if (!list.isEmpty()){
-                for (int i = 0; i < 10; i++) {  //scan all event stored in arrayList
-                    if (list.get(i).getNotifyTime().isEqual(currentTime)) {
-                        //get an event is noti time, yeah
-                        System.out.println("Its time boi " + count);
-                        list.remove(i);//remove event after job done
-                        count++;
-                        i--;    //roll back index by 1 to inspect next element.
+                int length = list.size();
+                for (int i = 0; i < length; i++){
+                    Event event = list.get(i);
+                    String recipient = event.getGuestList();
+                    if (!recipient.equals("None")) {
+                        noti.sendEmail(recipient, event.composeSubject(), event.composeMessage());
                     }
                 }
+                list.trimToSize();
             }
             time.setText(currentTime.format(this.formatter));
         }),

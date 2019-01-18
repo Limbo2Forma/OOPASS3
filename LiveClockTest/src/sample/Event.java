@@ -102,7 +102,7 @@ public class Event {
     }
     public String composeMessage(){
 
-        return "Event at " + location + " create by " + owner + "\n\n" + description;
+        return "Event at " + location + "\n\nCreate by " + owner + "\n\n" + description;
     }
 
 }

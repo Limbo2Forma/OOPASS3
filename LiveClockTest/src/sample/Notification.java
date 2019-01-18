@@ -26,7 +26,8 @@ public class Notification {
                     protected PasswordAuthentication getPasswordAuthentication() {
                         return new PasswordAuthentication("namvu6799@gmail.com", "nam671999");
                     }
-                });
+                }
+                );
     }
 
     public void sendEmail(String receivers,String subject, String content){

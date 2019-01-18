@@ -11,6 +11,7 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+    public Stage popUp = new Stage();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
