@@ -1,0 +1,18 @@
+#########
+title
+startTime (hh:mm a dd/MM/yyyy)
+endTime
+owner
+location
+guestList
+description
+notiTime
+#########
+party 1 makes me sad
+11:30 PM 12/03/2018
+1:30 AM 12/03/2018
+harrios8451@gmail.com
+2.4.44
+s3695336@rmit.edu.vn,s3694556@rmit.edu.vn
+What a cool party
+12
