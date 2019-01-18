@@ -4,9 +4,6 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
@@ -43,6 +40,7 @@ public class EventController {
     @FXML private TextField notiMin;
 
     @FXML private TextArea email;
+    @FXML private Button addEvent;
 
     //set DatePicker to unable to pick previous day than today
     private Callback<DatePicker, DateCell> getDayCellFactory() {
@@ -90,6 +88,7 @@ public class EventController {
         String owner = this.owner.getText();
         if (title.equals("")){      //error msg if blank
             this.errorMessage = this.errorMessage + "Missing Owner\n\n";
+
         }
         //get event location, if user let blank, fill as none
         String location = locate.getText();
@@ -134,6 +133,8 @@ public class EventController {
 
         if (this.errorMessage.equals("")){  //print out event created and add created event to arrayList
             list.add(new Event(title,startTime,endTime,owner,location,notiTime,guestList,describe));
+            Stage stage = (Stage) addEvent.getScene().getWindow();
+            stage.close();
         } else {
             //send pop up notification error message
             System.out.println(errorMessage);
