@@ -21,7 +21,7 @@ public class Notification { // Pop Up window notification AND send email notific
 
     public void sendNotification(String title, String message){
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Views/notifyPopUp.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Views/notifyPopUp.fxml"));
             Parent root1 = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setResizable(false);
@@ -74,9 +74,8 @@ public class Notification { // Pop Up window notification AND send email notific
 
     public boolean checkMultiEmail(String emails){
         String[] arr = emails.split(",");
-        int length = arr.length;
-            for (int i = 0; i < length; i++) {
-                if (!isValidEmailAddress(arr[i])){
+            for (String email: arr) {
+                if (!isValidEmailAddress(email)){
                     return false;
                 }
             }

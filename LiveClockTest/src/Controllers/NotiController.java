@@ -16,6 +16,7 @@ public class NotiController {
 
     @FXML
     void initialize(){}
+
     public void closeMessage(){
         Stage stage = (Stage) closeMsg.getScene().getWindow();
         // do what you have to do

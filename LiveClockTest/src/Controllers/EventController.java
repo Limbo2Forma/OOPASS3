@@ -18,9 +18,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class EventController {
-    private Notification noti = new Notification();
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a dd/MM/yyyy");
     private String errorMessage = "";
+    private Notification notification = new Notification();
 
     @FXML private Label time;
 
@@ -121,7 +121,7 @@ public class EventController {
                     "Please check if hours input are correct, include AM/PM.\n\n";
         }
         String guestList = email.getText();  //not have yet currently, add owner mail into the list also
-        if (!noti.checkMultiEmail(guestList) && !guestList.equals("")){
+        if (!notification.checkMultiEmail(guestList) && !guestList.equals("")){
             this.errorMessage = this.errorMessage + "Invalid email address(es).\n\n";
         }
         if (guestList.equals("")){
@@ -131,21 +131,14 @@ public class EventController {
         if (this.errorMessage.equals("")){  //print out event created and add created event to arrayList
             DataLoad.eventList.add(new Event(title,startTime,endTime,owner,location,notiTime,guestList,describe));
             Stage stage = (Stage) addEvent.getScene().getWindow();
-            noti.sendNotification("Event Created","Event " + title + " created successfully");
+            notification.sendNotification("Event Created","Event " + title + " created successfully");
             stage.close();
         } else {
             //send pop up notification error message
             System.out.println(errorMessage);
-            noti.sendNotification("Error input",errorMessage);
+            notification.sendNotification("Error input",errorMessage);
             errorMessage = "";
         }
-    }
-
-    //show pop up notification of event
-    private void showNotification(Event event){
-        String title = "Notify event " + event.getTitle();
-        String message = event.composeSubject() + "\n\n"+ event.composeMessage();
-        noti.sendNotification(title,message);
     }
 
     //set DatePicker formatting to dd/MM/yyyy
@@ -183,22 +176,7 @@ public class EventController {
         setDatePickerFormat(endDate);
         //use timeline to loop after 1 second
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
-            LocalDateTime currentTime = LocalDateTime.now().withSecond(0).withNano(0);
-            if (!DataLoad.eventList.isEmpty()){
-                for (Event event: DataLoad.eventList){
-                    if (event.getNotifyTime().isEqual(currentTime)){
-                        String recipient = event.getGuestList();
-                        if (!event.isSentStatus()) {
-                            showNotification(event);
-                            if (!recipient.equals("None")) {
-                                noti.sendEmail(recipient, event.composeSubject(), event.composeMessage());
-                            }
-                            event.setSentStatus(true);
-                        }
-                    }
-                }
-            }
-            time.setText(currentTime.format(this.formatter));
+            time.setText(LocalDateTime.now().withSecond(0).withNano(0).format(this.formatter));
         }),
                 new KeyFrame(Duration.seconds(1))
         );

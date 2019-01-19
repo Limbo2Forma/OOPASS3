@@ -1,41 +1,59 @@
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
+import Controllers.DataLoad;
+
+import Models.Event;
+import Models.Notification;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
+import java.time.LocalDateTime;
 
 public class Main extends Application {
+    private Notification notification = new Notification();
 
     public static void main(String[] args) {
         launch(args);
     }
-
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Add Event pop up");
-        Button btn = new Button();
-        btn.setText("Add Event");
-        btn.setOnAction(e ->
-                showAddEvent()
-        );
-
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        primaryStage.setScene(new Scene(root, 300, 250));
+        Parent root = FXMLLoader.load(getClass().getResource("/Views/weekView.fxml"));
+        primaryStage.setScene(new Scene(root));
+        primaryStage.setResizable(false);
+        primaryStage.setTitle("Week Calendar");
         primaryStage.show();
+
+        Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
+            checkEvent();
+        }),
+                new KeyFrame(Duration.seconds(1))
+        );
+        clock.setCycleCount(Animation.INDEFINITE);
+        clock.play();
     }
-    public void showAddEvent(){
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Views/event.fxml"));
-            Parent root1 = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Add Event");
-            stage.setScene(new Scene(root1));
-            stage.show();
-        } catch (Exception ioe){
-            System.out.println("ioe error");
+
+    private void checkEvent() {
+        LocalDateTime currentTime = LocalDateTime.now().withSecond(0).withNano(0);
+        if (!DataLoad.eventList.isEmpty()){
+            for (Event event: DataLoad.eventList){
+                if (event.getNotifyTime().isEqual(currentTime)){
+                    String recipient = event.getGuestList();
+                    if (!event.isSentStatus()) {
+                        String title = "Notify event " + event.getTitle();
+                        String message = event.composeSubject() + "\n\n"+ event.composeMessage();
+                        notification.sendNotification(title,message);
+                        if (!recipient.equals("None")) {
+                            notification.sendEmail(recipient, event.composeSubject(), event.composeMessage());
+                        }
+                        event.setSentStatus(true);
+                    }
+                }
+            }
         }
     }
 }
