@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EventController">
+   <children>
+      <Label id="time" fx:id="time" alignment="CENTER" contentDisplay="CENTER" layoutX="90.0" layoutY="14.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="103.0" prefWidth="1039.0" text="Current Time" textOverrun="CENTER_WORD_ELLIPSIS">
+         <font>
+            <Font size="70.0" />
+         </font>
+      </Label>
+      <ComboBox id="startHrs" fx:id="startHrs" editable="true" layoutX="177.0" layoutY="280.0" prefHeight="31.0" prefWidth="105.0">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:id="0100s" fx:value="01:00" />
+               <String fx:id="0130s" fx:value="01:30" />
+               <String fx:id="0200s" fx:value="02:00" />
+               <String fx:id="0230s" fx:value="02:30" />
+               <String fx:id="0300s" fx:value="03:00" />
+               <String fx:id="0330s" fx:value="03:30" />
+               <String fx:id="0400s" fx:value="04:00" />
+               <String fx:id="0430s" fx:value="04:30" />
+               <String fx:id="0500s" fx:value="05:00" />
+               <String fx:id="0530s" fx:value="05:30" />
+               <String fx:id="0600s" fx:value="06:00" />
+               <String fx:id="0630s" fx:value="06:30" />
+               <String fx:id="0700s" fx:value="07:00" />
+               <String fx:id="0730s" fx:value="07:30" />
+               <String fx:id="0800s" fx:value="08:00" />
+               <String fx:id="0830s" fx:value="08:30" />
+               <String fx:id="0900s" fx:value="09:00" />
+               <String fx:id="0930s" fx:value="09:30" />
+               <String fx:id="1000s" fx:value="10:00" />
+               <String fx:id="1030s" fx:value="10:30" />
+               <String fx:id="1100s" fx:value="11:00" />
+               <String fx:id="1130s" fx:value="11:30" />
+               <String fx:id="1200s" fx:value="12:00" />
+               <String fx:id="1230s" fx:value="12:30" />
+            </FXCollections>
+         </items>
+      </ComboBox>
+      <ComboBox id="startAmPm" fx:id="startAmPm" layoutX="299.0" layoutY="281.0" prefHeight="31.0" prefWidth="105.0" promptText="AM/PM">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:id="AMs" fx:value="AM" />
+               <String fx:id="PMs" fx:value="PM" />
+            </FXCollections>
+         </items>
+      </ComboBox>
+      <Label layoutX="80.0" layoutY="137.0" text="Title">
+         <font>
+            <Font size="45.0" />
+         </font>
+      </Label>
+      <Label layoutX="673.0" layoutY="296.0" text="Description">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="80.0" layoutY="278.0" prefHeight="36.0" prefWidth="82.0" text="Start">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="80.0" layoutY="325.0" prefHeight="36.0" prefWidth="82.0" text="End">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <ComboBox id="endAmPm" fx:id="endAmPm" layoutX="299.0" layoutY="328.0" prefHeight="31.0" prefWidth="105.0" promptText="AM/PM">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:id="AMe" fx:value="AM" />
+               <String fx:id="PMe" fx:value="PM" />
+            </FXCollections>
+         </items>
+      </ComboBox>
+      <ComboBox id="endHour" fx:id="endHrs" editable="true" layoutX="176.0" layoutY="328.0" prefHeight="31.0" prefWidth="105.0">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:id="0100e" fx:value="01:00" />
+               <String fx:id="0130e" fx:value="01:30" />
+               <String fx:id="0200e" fx:value="02:00" />
+               <String fx:id="0230e" fx:value="02:30" />
+               <String fx:id="0300e" fx:value="03:00" />
+               <String fx:id="0330e" fx:value="03:30" />
+               <String fx:id="0400e" fx:value="04:00" />
+               <String fx:id="0430e" fx:value="04:30" />
+               <String fx:id="0500e" fx:value="05:00" />
+               <String fx:id="0530e" fx:value="05:30" />
+               <String fx:id="0600e" fx:value="06:00" />
+               <String fx:id="0630e" fx:value="06:30" />
+               <String fx:id="0700e" fx:value="07:00" />
+               <String fx:id="0730e" fx:value="07:30" />
+               <String fx:id="0800e" fx:value="08:00" />
+               <String fx:id="0830e" fx:value="08:30" />
+               <String fx:id="0900e" fx:value="09:00" />
+               <String fx:id="0930e" fx:value="09:30" />
+               <String fx:id="1000e" fx:value="10:00" />
+               <String fx:id="1030e" fx:value="10:30" />
+               <String fx:id="1100e" fx:value="11:00" />
+               <String fx:id="1130e" fx:value="11:30" />
+               <String fx:id="1200e" fx:value="12:00" />
+               <String fx:id="1230e" fx:value="12:30" />
+            </FXCollections>
+         </items>
+      </ComboBox>
+      <Label layoutX="80.0" layoutY="387.0" text="Notification before:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField id="notiMin" fx:id="notiMin" layoutX="267.0" layoutY="387.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="63.0" promptText="0" text="0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <Label layoutX="339.0" layoutY="386.0" text="minutes">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="80.0" layoutY="219.0" text="Owner">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <TextField id="owner" fx:id="owner" layoutX="199.0" layoutY="217.0" prefHeight="44.0" prefWidth="424.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <Label layoutX="673.0" layoutY="142.0" text="Guest List (email,email,email,..)">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Button fx:id="addEvent" layoutX="914.0" layoutY="579.0" mnemonicParsing="false" onMouseClicked="#setEvent" prefHeight="54.0" prefWidth="225.0" text="Add Event" />
+      <TextField id="eventTitle" fx:id="eventTitle" layoutX="199.0" layoutY="143.0" prefHeight="54.0" prefWidth="424.0">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </TextField>
+      <TextArea id="description" fx:id="description" layoutX="673.0" layoutY="335.0" prefHeight="221.0" prefWidth="462.0" wrapText="true">
+         <font>
+            <Font size="20.0" />
+         </font></TextArea>
+      <Label layoutX="80.0" layoutY="428.0" text="Location">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="locate" layoutX="80.0" layoutY="469.0" prefHeight="83.0" prefWidth="478.0" />
+      <DatePicker fx:id="endDate" layoutX="426.0" layoutY="328.0" prefHeight="31.0" prefWidth="199.0" />
+      <TextArea fx:id="email" layoutX="673.0" layoutY="187.0" prefHeight="83.0" prefWidth="462.0" wrapText="true" />
+      <DatePicker fx:id="startDate" layoutX="426.0" layoutY="281.0" prefHeight="31.0" prefWidth="199.0" />
+   </children>
+</Pane>

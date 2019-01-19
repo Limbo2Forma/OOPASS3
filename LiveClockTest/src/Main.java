@@ -1,8 +1,5 @@
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
-import sample.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -31,7 +28,7 @@ public class Main extends Application {
     }
     public void showAddEvent(){
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sample/event.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Views/event.fxml"));
             Parent root1 = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setTitle("Add Event");
