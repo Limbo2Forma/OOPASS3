@@ -77,10 +77,13 @@ public class EventController {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         //get event start time, default date is today (as we choose the date to start event)
-        LocalDateTime startTime = null;
+        String startTime = "";
+        LocalDateTime start = null;
         try {
-            startTime = LocalDateTime.parse(startHrs.getValue() + " " + startAmPm.getValue() + " " + startDate.getValue().format(formatter), this.formatter);
-            if (startTime.isBefore(LocalDateTime.now().withNano(0).withSecond(0))){
+            startTime = startHrs.getValue() + " " + startAmPm.getValue()
+                    + " " + startDate.getValue().format(formatter);
+            start = LocalDateTime.parse(startTime, this.formatter);
+            if (start.isBefore(LocalDateTime.now().withNano(0).withSecond(0))){
                 //error msg if start date is sooner than today
                 this.errorMessage = this.errorMessage + "Invalid start time input\n" +
                         "It should start after right now, duh.\n\n";
@@ -111,7 +114,7 @@ public class EventController {
             endTime = endHrs.getValue() + " " + endAmPm.getValue() + " "
                     + endDate.getValue().format(formatter);
             LocalDateTime end = LocalDateTime.parse(endTime, this.formatter);
-            if (end.isBefore(startTime)){   //error msg if end date is sooner than start date
+            if (end.isBefore(start)){   //error msg if end date is sooner than start date
                 this.errorMessage = this.errorMessage + "Invalid end time input\n" +
                         "It should after start date, duh.\n\n";
             }

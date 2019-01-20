@@ -1,30 +1,21 @@
 package Models;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Event {
+public class Event implements Serializable {
 
     private String title;
-    private LocalDateTime startTime;
+    private String startTime;
     private String endTime;
     private int notiTime;
-    private LocalDateTime notifyTime;
+    private String notifyTime;
     private String owner;
     private String location;
     private String guestList;
     private String description;
     private boolean sentStatus = false;
-
-    public boolean isSentStatus() {
-        return sentStatus;
-    }
-
-    public void setSentStatus(boolean sentStatus) {
-        this.sentStatus = sentStatus;
-    }
-
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a dd/MM/yyyy");
 
     public String getTitle() {
         return title;
@@ -34,11 +25,11 @@ public class Event {
         this.title = title;
     }
 
-    public LocalDateTime getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalDateTime startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
@@ -56,6 +47,14 @@ public class Event {
 
     public void setNotiTime(int notiTime) {
         this.notiTime = notiTime;
+    }
+
+    public String getNotifyTime() {
+        return notifyTime;
+    }
+
+    public void setNotifyTime(String notifyTime) {
+        this.notifyTime = notifyTime;
     }
 
     public String getOwner() {
@@ -90,12 +89,16 @@ public class Event {
         this.description = description;
     }
 
-    public LocalDateTime getNotifyTime() {
-        return notifyTime;
+    public boolean isSentStatus() {
+        return sentStatus;
     }
 
-    public Event(String title, LocalDateTime startTime, String endTime, String owner,
-          String location, int notiTime, String guestList, String description ){
+    public void setSentStatus(boolean sentStatus) {
+        this.sentStatus = sentStatus;
+    }
+
+    public Event(String title, String startTime, String endTime, String owner,
+                 String location, int notiTime, String guestList, String description ){
             this.title = title;
             this.startTime = startTime;
             this.endTime = endTime;
@@ -105,10 +108,11 @@ public class Event {
             this.description = description;
             this.notiTime = notiTime;
 
-            this.notifyTime = startTime.minusMinutes(notiTime);
+            this.notifyTime = LocalDateTime.parse(startTime,DateTimeFormatter.ofPattern("hh:mm a dd/MM/yyyy")).
+                    minusMinutes(notiTime).format(DateTimeFormatter.ofPattern("hh:mm a dd/MM/yyyy"));
     }
     public String composeSubject(){
-        return "Event " + title + " start at " + startTime.format(formatter) + " end at " + endTime;
+        return "Event " + title + " start at " + startTime + " end at " + endTime;
     }
     public String composeMessage(){
 

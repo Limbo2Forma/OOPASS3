@@ -11,12 +11,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Main extends Application {
     private Notification notification = new Notification();
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a dd/MM/yyyy");
 
     public static void main(String[] args) {
         launch(args);
@@ -27,7 +30,8 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
         primaryStage.setTitle("Week Calendar");
-        Platform.setImplicitExit(false);
+        //Platform.setImplicitExit(false);
+        DataLoad.deserializeEvent();
         primaryStage.show();
 
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
@@ -37,6 +41,9 @@ public class Main extends Application {
         );
         clock.setCycleCount(Animation.INDEFINITE);
         clock.play();
+        primaryStage.setOnCloseRequest((WindowEvent event1) -> {
+            DataLoad.serializeEvent();
+        });
     }
 
     private void checkEvent() {
@@ -44,7 +51,7 @@ public class Main extends Application {
         //notification.sendNotification("1","2");
         if (!DataLoad.eventList.isEmpty()){
             for (Event event: DataLoad.eventList){
-                if (event.getNotifyTime().isEqual(currentTime)){
+                if (LocalDateTime.parse(event.getNotifyTime(), this.formatter).isEqual(currentTime)){
                     String recipient = event.getGuestList();
                     if (!event.isSentStatus()) {
                         String title = "Notify event " + event.getTitle();
