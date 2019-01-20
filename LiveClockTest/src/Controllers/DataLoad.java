@@ -24,6 +24,8 @@ public class DataLoad {
     }
 
     public static void serializeEvent(){
+        PrintWriter pw = new PrintWriter("EventSaveData.txt");
+        pw.close();
         try
         {
             FileOutputStream fos = new FileOutputStream("EventSaveData.txt");
