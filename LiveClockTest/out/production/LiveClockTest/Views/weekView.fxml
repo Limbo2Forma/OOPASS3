@@ -55,30 +55,30 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     </rowConstraints>
                                     <children>
-                                        <Label fx:id="MA21" alignment="BASELINE_CENTER" text="12 AM" />
-                                        <Label fx:id="MA1" text="1 AM" GridPane.rowIndex="1" />
-                                        <Label fx:id="MA2" text="2 AM" GridPane.rowIndex="2" />
-                                        <Label fx:id="MA3" text="3 AM" GridPane.rowIndex="3" />
-                                        <Label fx:id="MA4" text="4 AM" GridPane.rowIndex="4" />
-                                        <Label fx:id="MA5" text="5 AM" GridPane.rowIndex="5" />
-                                        <Label fx:id="MA6" text="6 AM" GridPane.rowIndex="6" />
-                                        <Label fx:id="MA7" text="7 AM" GridPane.rowIndex="7" />
-                                        <Label fx:id="MA8" text="8 AM" GridPane.rowIndex="8" />
-                                        <Label fx:id="MA9" text="9 AM" GridPane.rowIndex="9" />
-                                        <Label fx:id="MA01" text="10 AM" GridPane.rowIndex="10" />
-                                        <Label fx:id="MA11" text="11 AM" GridPane.rowIndex="11" />
-                                        <Label fx:id="MP21" text="12 PM" GridPane.rowIndex="12" />
-                                        <Label fx:id="MP1" text="1 PM" GridPane.rowIndex="13" />
-                                        <Label fx:id="MP2" text="2 PM" GridPane.rowIndex="14" />
-                                        <Label fx:id="MP3" text="3 PM" GridPane.rowIndex="15" />
-                                        <Label fx:id="MP4" text="4 PM" GridPane.rowIndex="16" />
-                                        <Label fx:id="MP5" text="5 PM" GridPane.rowIndex="17" />
-                                        <Label fx:id="MP6" text="6 PM" GridPane.rowIndex="18" />
-                                        <Label fx:id="MP7" text="7 PM" GridPane.rowIndex="19" />
-                                        <Label fx:id="MP8" text="8 PM" GridPane.rowIndex="21" />
-                                        <Label fx:id="MP9" text="9 PM" GridPane.rowIndex="20" />
-                                        <Label fx:id="MP01" text="10 PM" GridPane.rowIndex="22" />
-                                        <Label fx:id="MP11" text="11 PM" GridPane.rowIndex="23" />
+                                        <Label fx:id="MA0021" alignment="BASELINE_CENTER" text="12 AM" />
+                                        <Label fx:id="MA0010" text="1 AM" GridPane.rowIndex="1" />
+                                        <Label fx:id="MA0020" text="2 AM" GridPane.rowIndex="2" />
+                                        <Label fx:id="MA0030" text="3 AM" GridPane.rowIndex="3" />
+                                        <Label fx:id="MA0040" text="4 AM" GridPane.rowIndex="4" />
+                                        <Label fx:id="MA0050" text="5 AM" GridPane.rowIndex="5" />
+                                        <Label fx:id="MA0060" text="6 AM" GridPane.rowIndex="6" />
+                                        <Label fx:id="MA0070" text="7 AM" GridPane.rowIndex="7" />
+                                        <Label fx:id="MA0080" text="8 AM" GridPane.rowIndex="8" />
+                                        <Label fx:id="MA0090" text="9 AM" GridPane.rowIndex="9" />
+                                        <Label fx:id="MA0001" text="10 AM" GridPane.rowIndex="10" />
+                                        <Label fx:id="MA0011" text="11 AM" GridPane.rowIndex="11" />
+                                        <Label fx:id="MP0021" text="12 PM" GridPane.rowIndex="12" />
+                                        <Label fx:id="MP0010" text="1 PM" GridPane.rowIndex="13" />
+                                        <Label fx:id="MP0020" text="2 PM" GridPane.rowIndex="14" />
+                                        <Label fx:id="MP0030" text="3 PM" GridPane.rowIndex="15" />
+                                        <Label fx:id="MP0040" text="4 PM" GridPane.rowIndex="16" />
+                                        <Label fx:id="MP0050" text="5 PM" GridPane.rowIndex="17" />
+                                        <Label fx:id="MP0060" text="6 PM" GridPane.rowIndex="18" />
+                                        <Label fx:id="MP0070" text="7 PM" GridPane.rowIndex="19" />
+                                        <Label fx:id="MP0080" text="8 PM" GridPane.rowIndex="21" />
+                                        <Label fx:id="MP0090" text="9 PM" GridPane.rowIndex="20" />
+                                        <Label fx:id="MP0001" text="10 PM" GridPane.rowIndex="22" />
+                                        <Label fx:id="MP0011" text="11 PM" GridPane.rowIndex="23" />
                                         <StackPane onMouseClicked="#mouseClick" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" />
                                         <StackPane onMouseClicked="#mouseClick" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                         <StackPane onMouseClicked="#mouseClick" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />

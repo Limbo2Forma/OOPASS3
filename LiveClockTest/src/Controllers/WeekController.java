@@ -10,9 +10,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class WeekController {
     private LocalDate currentSun;
@@ -44,7 +46,8 @@ public class WeekController {
             stage.setTitle("Add new event");
             stage.setResizable(false);
             stage.setScene(new Scene(root1));
-            stage.show();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
         } catch (Exception ioe){
             System.out.println("ioe error");
         }
@@ -55,6 +58,7 @@ public class WeekController {
         String str2 = "";
         StringBuilder sb = new StringBuilder(str);
         sb.insert(2," ");
+        sb.insert(5,":");
         for (int i = sb.length()-1; i >= 0; i-- ){
             str2 = str2 + sb.charAt(i);
         }

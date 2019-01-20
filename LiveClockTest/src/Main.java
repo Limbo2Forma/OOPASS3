@@ -6,6 +6,7 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -26,6 +27,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
         primaryStage.setTitle("Week Calendar");
+        Platform.setImplicitExit(false);
         primaryStage.show();
 
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
@@ -39,6 +41,7 @@ public class Main extends Application {
 
     private void checkEvent() {
         LocalDateTime currentTime = LocalDateTime.now().withSecond(0).withNano(0);
+        //notification.sendNotification("1","2");
         if (!DataLoad.eventList.isEmpty()){
             for (Event event: DataLoad.eventList){
                 if (event.getNotifyTime().isEqual(currentTime)){
@@ -46,10 +49,10 @@ public class Main extends Application {
                     if (!event.isSentStatus()) {
                         String title = "Notify event " + event.getTitle();
                         String message = event.composeSubject() + "\n\n"+ event.composeMessage();
-                        notification.sendNotification(title,message);
                         if (!recipient.equals("None")) {
                             notification.sendEmail(recipient, event.composeSubject(), event.composeMessage());
                         }
+                        notification.sendNotification(title,message);
                         event.setSentStatus(true);
                     }
                 }

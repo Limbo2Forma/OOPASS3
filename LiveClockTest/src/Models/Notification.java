@@ -2,6 +2,7 @@ package Models;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import Controllers.NotiController;
 
@@ -20,18 +21,20 @@ public class Notification { // Pop Up window notification AND send email notific
     private Session session = sessionMail();
 
     public void sendNotification(String title, String message){
+        Stage stage = new Stage();
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Views/notifyPopUp.fxml"));
             Parent root1 = fxmlLoader.load();
-            Stage stage = new Stage();
             stage.setResizable(false);
             stage.setScene(new Scene(root1));
             stage.setTitle(title);
             NotiController controller = fxmlLoader.getController();
             controller.setMsg(message);
-            stage.show();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
         } catch (Exception ioe){
-            System.out.println("ioe error");
+            stage.show();
+            System.out.println("pop up error");
         }
     }
 
@@ -69,8 +72,6 @@ public class Notification { // Pop Up window notification AND send email notific
             throw new RuntimeException(e);
         }
     }
-//        sendEmail("s3695424@rmit.edu.vn,s3678436@rmit.edu.vn,s3695336@rmit.edu.vn,s3695275@rmit.edu.vn,s3678505@rmit.edu.vn",
-//                "Lời kêu gọi","Tôi nói đồng bào nghe rõ không\n"+"Đừng rep mail này nha");
 
     public boolean checkMultiEmail(String emails){
         String[] arr = emails.split(",");
