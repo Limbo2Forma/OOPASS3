@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="monthlyPane" prefHeight="68.0" prefWidth="279.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.ReminderViewController">
+   <children>
+      <TextField layoutX="6.0" layoutY="1.0" prefHeight="25.0" prefWidth="37.0" text="On:" />
+      <TextField layoutX="53.0" layoutY="1.0" prefHeight="25.0" prefWidth="43.0" text="num" />
+      <Button layoutX="96.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" text="up" />
+      <Button layoutX="136.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" text="down" />
+      <TextField layoutX="6.0" layoutY="41.0" prefHeight="25.0" prefWidth="66.0" text="On every:" />
+      <MenuButton layoutX="75.0" layoutY="41.0" mnemonicParsing="false" text="MenuButton">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Monday" />
+            <MenuItem mnemonicParsing="false" text="Tuesday" />
+            <MenuItem mnemonicParsing="false" text="Wednesday" />
+            <MenuItem mnemonicParsing="false" text="Thursday" />
+            <MenuItem mnemonicParsing="false" text="Friday" />
+            <MenuItem mnemonicParsing="false" text="Saturday" />
+            <MenuItem mnemonicParsing="false" text="Sunday" />
+         </items>
+      </MenuButton>
+      <MenuButton layoutX="179.0" layoutY="41.0" mnemonicParsing="false" text="MenuButton">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Week 1" />
+            <MenuItem mnemonicParsing="false" text="Week 2" />
+            <MenuItem mnemonicParsing="false" text="Week 3" />
+            <MenuItem mnemonicParsing="false" text="Week 4" />
+            <MenuItem mnemonicParsing="false" text="Week 5" />
+         </items>
+      </MenuButton>
+   </children>
+</Pane>
