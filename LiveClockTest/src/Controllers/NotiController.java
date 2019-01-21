@@ -27,7 +27,7 @@ public class NotiController {
     }
 
     public void stopProgram(){
-        DataLoad.serializeEvent();
+        DataLoad.saveAllData();
         Platform.exit();
     }
 }
