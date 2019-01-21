@@ -1,7 +1,7 @@
 package Controllers;
 
 import Models.Event;
-import Models.Reminder
+import Models.Reminder;
 
 import java.io.*;
 import java.time.format.DateTimeFormatter;
