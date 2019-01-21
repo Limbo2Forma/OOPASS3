@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
 import javafx.util.StringConverter;
+import org.omg.CORBA.DATA_CONVERSION;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -70,11 +71,9 @@ public class EventController {
         }
         //get event owner
         String owner = this.owner.getText();
-        if (title.equals("")){      //error msg if blank
-            this.errorMessage = this.errorMessage + "Missing Owner\n\n";
-
+        if (title.equals("")){
+            owner = DataLoad.user.getName();
         }
-
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         //get event start time, default date is today (as we choose the date to start event)
         String startTime = "";
@@ -118,7 +117,6 @@ public class EventController {
                 this.errorMessage = this.errorMessage + "Invalid end time input\n" +
                         "It should after start date, duh.\n\n";
             }
-
         } catch (Exception e){  //error msg if wrong format input or no input
             this.errorMessage = this.errorMessage + "Invalid end time input\n" +
                     "Please check if hours input are correct, include AM/PM.\n\n";
@@ -130,9 +128,9 @@ public class EventController {
         if (guestList.equals("")){
             guestList = "None";
         }
-
         if (this.errorMessage.equals("")){  //print out event created and add created event to arrayList
             DataLoad.eventList.add(new Event(title,startTime,endTime,owner,location,notiTime,guestList,describe));
+            DataLoad.serializeEvent();
             Stage stage = (Stage) addEvent.getScene().getWindow();
             notification.sendNotification("Event Created","Event " + title + " created successfully",false);
             stage.close();
@@ -187,3 +185,4 @@ public class EventController {
         clock.play();
     }
 }
+
