@@ -12,7 +12,7 @@
         <StackPane fx:id="month" layoutX="712.0" layoutY="-7.0" prefHeight="65.0" prefWidth="114.0" />
         <StackPane fx:id="year" layoutX="797.0" layoutY="-7.0" prefHeight="65.0" prefWidth="114.0" />
       <Button layoutX="14.0" layoutY="58.0" mnemonicParsing="false" onMouseClicked="#showAddEvent" text="Add event/reminder" />
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="88.0" text="Setting" />
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#showSetting" prefHeight="31.0" prefWidth="88.0" text="Setting" />
       <TabPane layoutX="14.0" layoutY="88.0" prefHeight="578.0" prefWidth="386.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="All Event">
@@ -21,12 +21,11 @@
                      <children>
                         <Pane prefHeight="543.0" prefWidth="386.0">
                            <children>
-                              <TableView fx:id="tableView" fixedCellSize="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="488.0" prefWidth="386.0">
+                              <TableView fx:id="eventTable" fixedCellSize="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="488.0" prefWidth="386.0">
                                  <columns>
-                                    <TableColumn fx:id="numECol" prefWidth="43.0" text="#" />
-                                    <TableColumn fx:id="eventCol" prefWidth="133.0" text="Event" />
-                                    <TableColumn fx:id="ownerCol" prefWidth="97.0" text="Owner" />
-                                    <TableColumn fx:id="timeECol" prefWidth="113.0" text="Time" />
+                                    <TableColumn fx:id="eventCol" prefWidth="143.0" text="Event" />
+                                    <TableColumn fx:id="ownerCol" prefWidth="110.0" text="Owner" />
+                                    <TableColumn fx:id="timeCol" prefWidth="133.0" text="Time" />
                                  </columns>
                               </TableView>
                               <Button layoutX="311.0" layoutY="498.0" mnemonicParsing="false" text="Delete" />

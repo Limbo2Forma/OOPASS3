@@ -9,8 +9,8 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MonthController">
    <children>
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#prevMonth" text="&lt;&lt;" />
-      <Button layoutX="721.0" layoutY="14.0" mnemonicParsing="false" onAction="#nextMonth" text="&gt;&gt;" />
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#prevMonth" text="&lt;" />
+      <Button layoutX="745.0" layoutY="14.0" mnemonicParsing="false" onAction="#nextMonth" text="&gt;" />
       <StackPane fx:id="month" layoutX="205.0" layoutY="14.0" prefHeight="70.0" prefWidth="175.0" />
       <StackPane fx:id="year" layoutX="380.0" layoutY="10.0" prefHeight="70.0" prefWidth="175.0" />
       <HBox layoutX="16.0" layoutY="80.0" prefHeight="70.0" prefWidth="769.0">
