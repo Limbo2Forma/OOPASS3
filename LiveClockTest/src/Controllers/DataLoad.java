@@ -21,6 +21,8 @@ public class DataLoad {
     }
 
     public static void serializeUser(){
+        PrintWriter pw = new PrintWriter("UserSaveData.txt");
+        pw.close();
         try {
             FileOutputStream fileOut =
                     new FileOutputStream("UserSaveData.txt");
@@ -48,6 +50,8 @@ public class DataLoad {
     }
 
     public static void serializeEvent(){
+        PrintWriter pw = new PrintWriter("EventSaveData.txt");
+        pw.close();
         try {
             FileOutputStream fos = new FileOutputStream("EventSaveData.txt");
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("EventSaveData.txt"));
