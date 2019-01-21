@@ -1,37 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane fx:id="monthlyPane" prefHeight="68.0" prefWidth="279.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.ReminderViewController">
+<Pane fx:id="monthlyPane" prefHeight="68.0" prefWidth="291.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.ReminderViewController">
    <children>
-      <TextField layoutX="6.0" layoutY="1.0" prefHeight="25.0" prefWidth="37.0" text="On:" />
-      <TextField layoutX="53.0" layoutY="1.0" prefHeight="25.0" prefWidth="43.0" text="num" />
-      <Button layoutX="96.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" text="up" />
-      <Button layoutX="136.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" text="down" />
-      <TextField layoutX="6.0" layoutY="41.0" prefHeight="25.0" prefWidth="66.0" text="On every:" />
-      <MenuButton layoutX="75.0" layoutY="41.0" mnemonicParsing="false" text="MenuButton">
+      <Spinner fx:id="spinner" initialValue="0" layoutX="53.0" layoutY="1.0" max="100" min="0" prefWidth="60.0">
+         <editable>true</editable>
+      </Spinner>
+      <MenuButton fx:id="date" alignment="CENTER" layoutX="75.0" layoutY="41.0" mnemonicParsing="false" text="Date">
          <items>
-            <MenuItem mnemonicParsing="false" text="Monday" />
-            <MenuItem mnemonicParsing="false" text="Tuesday" />
-            <MenuItem mnemonicParsing="false" text="Wednesday" />
-            <MenuItem mnemonicParsing="false" text="Thursday" />
-            <MenuItem mnemonicParsing="false" text="Friday" />
-            <MenuItem mnemonicParsing="false" text="Saturday" />
-            <MenuItem mnemonicParsing="false" text="Sunday" />
+            <MenuItem mnemonicParsing="false" onAction="#displayMon" text="Monday" />
+            <MenuItem mnemonicParsing="false" onAction="#displayTue" text="Tuesday" />
+            <MenuItem mnemonicParsing="false" onAction="#displayWed" text="Wednesday" />
+            <MenuItem mnemonicParsing="false" onAction="#displayThur" text="Thursday" />
+            <MenuItem mnemonicParsing="false" onAction="#displayFri" text="Friday" />
+            <MenuItem mnemonicParsing="false" onAction="#displaySat" text="Saturday" />
+            <MenuItem mnemonicParsing="false" onAction="#displaySun" text="Sunday" />
          </items>
       </MenuButton>
-      <MenuButton layoutX="179.0" layoutY="41.0" mnemonicParsing="false" text="MenuButton">
+      <MenuButton fx:id="week" layoutX="195.0" layoutY="41.0" mnemonicParsing="false" text="Week">
          <items>
-            <MenuItem mnemonicParsing="false" text="Week 1" />
-            <MenuItem mnemonicParsing="false" text="Week 2" />
-            <MenuItem mnemonicParsing="false" text="Week 3" />
-            <MenuItem mnemonicParsing="false" text="Week 4" />
-            <MenuItem mnemonicParsing="false" text="Week 5" />
+            <MenuItem mnemonicParsing="false" onAction="#displayWeek1" text="Week 1" />
+            <MenuItem mnemonicParsing="false" onAction="#displayWeek2" text="Week 2" />
+            <MenuItem mnemonicParsing="false" onAction="#displayWeek3" text="Week 3" />
+            <MenuItem mnemonicParsing="false" onAction="#displayWeek4" text="Week 4" />
+            <MenuItem mnemonicParsing="false" onAction="#displayWeek5" text="Week 5" />
          </items>
       </MenuButton>
+      <Label layoutX="6.0" layoutY="6.0" text="On:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label contentDisplay="CENTER" layoutX="6.0" layoutY="42.0" prefHeight="25.0" prefWidth="65.0" text="On every:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

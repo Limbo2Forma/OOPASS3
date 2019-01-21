@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.embed.swing.*?>
@@ -11,37 +12,32 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="218.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.ReminderViewController">
+<Pane fx:id="reminderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="218.0" prefWidth="344.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.ReminderViewController">
    <children>
-      <TextField fx:id="numRepeat" layoutX="147.0" layoutY="7.0" onKeyPressed="#init" prefHeight="25.0" prefWidth="43.0" text="0" />
-      <HBox layoutX="190.0" layoutY="7.0" prefHeight="25.0" prefWidth="66.0">
-         <children>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" text="up" />
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" text="down" />
-         </children>
-      </HBox>
-      <MenuButton layoutX="265.0" layoutY="7.0" mnemonicParsing="false" text="Period">
+       <Spinner fx:id="spinner" initialValue="0" layoutX="92.0" layoutY="8.0" max="100" min="0" prefWidth="60.0">
+           <editable>true</editable>
+       </Spinner>
+      <MenuButton fx:id="menu" layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="Period">
         <items>
           <MenuItem mnemonicParsing="false" text="Daily" />
           <MenuItem mnemonicParsing="false" onAction="#loadViewWeek" text="Weekly" />
             <MenuItem mnemonicParsing="false" onAction="#loadViewMonth" text="Monthly" />
-            <!--<MenuItem mnemonicParsing="false" onAction="#loadViewMonth" text="Monthly" />-->
-            <MenuItem mnemonicParsing="false" text="Yearly" />
         </items>
       </MenuButton>
-      <HBox layoutX="14.0" layoutY="165.0" prefHeight="26.0" prefWidth="109.0">
+      <HBox layoutX="14.0" layoutY="170.0" prefHeight="26.0" prefWidth="109.0">
          <children>
             <Label prefHeight="26.0" prefWidth="36.0" text="End:" />
-            <MenuButton mnemonicParsing="false" text="Choose">
+            <MenuButton fx:id="sub_menu" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Choose">
               <items>
-                <MenuItem mnemonicParsing="false" text="Never" />
-                <MenuItem mnemonicParsing="false" text="On date" />
-                  <MenuItem mnemonicParsing="false" text="After" />
+                <MenuItem mnemonicParsing="false" onAction="#loadEndButton_Never" text="Never" />
+                <MenuItem mnemonicParsing="false" onAction="#loadEndButton_OnDate" text="On date" />
+                  <MenuItem mnemonicParsing="false" onAction="#loadEndButton_After" text="After" />
               </items>
             </MenuButton>
          </children>
       </HBox>
       <Label layoutX="14.0" layoutY="8.0" prefHeight="24.0" prefWidth="84.0" text="Repeat every: " />
-      <Pane fx:id="pane" layoutX="-4.0" layoutY="49.0" prefHeight="121.0" prefWidth="489.0" />
+      <Pane fx:id="pane" layoutX="7.0" layoutY="60.0" prefHeight="110.0" prefWidth="338.0" />
+      <Pane fx:id="sub_pane" layoutX="131.0" layoutY="170.0" prefHeight="26.0" prefWidth="208.0" />
    </children>
 </Pane>
