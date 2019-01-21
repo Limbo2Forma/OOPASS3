@@ -33,9 +33,9 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.setTitle("Week Calendar");
         Platform.setImplicitExit(false);
-        DataLoad.deserializeEvent();
+        DataLoad.loadAlldata();
         primaryStage.show();
-
+        
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             checkEvent();
         }),
