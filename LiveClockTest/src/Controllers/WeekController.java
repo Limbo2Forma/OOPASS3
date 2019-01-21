@@ -1,20 +1,13 @@
 package Controllers;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class WeekController {
     private LocalDate currentSun;
@@ -35,22 +28,6 @@ public class WeekController {
             populateDay(currentSun.plusDays(i), i);
         }
         populateMonth(currentSun);
-    }
-
-    @FXML
-    private void showAddEvent(){
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Views/event.fxml"));
-            Parent root1 = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Add new event");
-            stage.setResizable(false);
-            stage.setScene(new Scene(root1));
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.showAndWait();
-        } catch (Exception ioe){
-            System.out.println("ioe error");
-        }
     }
 
     //Edit time string

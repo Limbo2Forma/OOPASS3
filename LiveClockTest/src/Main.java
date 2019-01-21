@@ -28,7 +28,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/Views/weekView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Views/View.fxml"));
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
         primaryStage.setTitle("Week Calendar");
