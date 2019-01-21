@@ -134,12 +134,12 @@ public class EventController {
         if (this.errorMessage.equals("")){  //print out event created and add created event to arrayList
             DataLoad.eventList.add(new Event(title,startTime,endTime,owner,location,notiTime,guestList,describe));
             Stage stage = (Stage) addEvent.getScene().getWindow();
-            notification.sendNotification("Event Created","Event " + title + " created successfully");
+            notification.sendNotification("Event Created","Event " + title + " created successfully",false);
             stage.close();
         } else {
             //send pop up notification error message
             System.out.println(errorMessage);
-            notification.sendNotification("Error input",errorMessage);
+            notification.sendNotification("Error input",errorMessage,false);
             errorMessage = "";
         }
     }

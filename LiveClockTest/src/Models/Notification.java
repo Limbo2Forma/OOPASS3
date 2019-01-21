@@ -20,7 +20,7 @@ import javax.mail.internet.MimeMessage;
 public class Notification { // Pop Up window notification AND send email notification
     private Session session = sessionMail();
 
-    public void sendNotification(String title, String message){
+    public void sendNotification(String title, String message, boolean isNoti){
         Stage stage = new Stage();
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Views/notifyPopUp.fxml"));
@@ -30,11 +30,11 @@ public class Notification { // Pop Up window notification AND send email notific
             stage.setTitle(title);
             NotiController controller = fxmlLoader.getController();
             controller.setMsg(message);
+            controller.stop.setVisible(isNoti);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
         } catch (Exception ioe){
             stage.show();
-            System.out.println("pop up error");
         }
     }
 
@@ -65,7 +65,6 @@ public class Notification { // Pop Up window notification AND send email notific
             message.setText(content);
 
             Transport.send(message);
-
             System.out.println("Done");
 
         } catch (MessagingException e) {

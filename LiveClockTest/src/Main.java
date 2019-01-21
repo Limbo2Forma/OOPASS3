@@ -20,35 +20,36 @@ import java.time.format.DateTimeFormatter;
 public class Main extends Application {
     private Notification notification = new Notification();
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a dd/MM/yyyy");
+    private static Stage primaryStage = new Stage();
 
     public static void main(String[] args) {
         launch(args);
     }
+
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/Views/weekView.fxml"));
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
         primaryStage.setTitle("Week Calendar");
-        //Platform.setImplicitExit(false);
+        Platform.setImplicitExit(false);
         DataLoad.deserializeEvent();
         primaryStage.show();
 
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             checkEvent();
         }),
-                new KeyFrame(Duration.seconds(1))
+                new KeyFrame(Duration.seconds(20))
         );
         clock.setCycleCount(Animation.INDEFINITE);
         clock.play();
         primaryStage.setOnCloseRequest((WindowEvent event1) -> {
-            DataLoad.serializeEvent();
+            //DataLoad.serializeEvent();
         });
     }
 
     private void checkEvent() {
         LocalDateTime currentTime = LocalDateTime.now().withSecond(0).withNano(0);
-        //notification.sendNotification("1","2");
         if (!DataLoad.eventList.isEmpty()){
             for (Event event: DataLoad.eventList){
                 if (LocalDateTime.parse(event.getNotifyTime(), this.formatter).isEqual(currentTime)){
@@ -59,7 +60,7 @@ public class Main extends Application {
                         if (!recipient.equals("None")) {
                             notification.sendEmail(recipient, event.composeSubject(), event.composeMessage());
                         }
-                        notification.sendNotification(title,message);
+                        notification.sendNotification(title,message,true);
                         event.setSentStatus(true);
                     }
                 }

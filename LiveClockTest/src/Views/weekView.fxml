@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.collections.*?>
+<?import java.lang.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.WeekController">
     <children>
-        <Button layoutX="412.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#lastWeek" prefHeight="31.0" prefWidth="71.0" text="&lt;&lt;" />
+        <Button layoutX="412.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#lastWeek" prefHeight="31.0" prefWidth="71.0" text="&lt;&lt;" />
         <Button layoutX="1121.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#nextWeek" prefHeight="31.0" prefWidth="71.0" text="&gt;&gt;" />
         <Pane layoutX="412.0" layoutY="126.0" prefHeight="561.0" prefWidth="800.0">
             <children>
@@ -272,7 +274,7 @@
             </children>
         </StackPane>
         <StackPane fx:id="year" layoutX="797.0" layoutY="-7.0" prefHeight="65.0" prefWidth="114.0" />
-      <Button layoutX="25.0" layoutY="620.0" mnemonicParsing="false" onMouseClicked="#showAddEvent" text="Add event" />
+      <Button layoutX="14.0" layoutY="58.0" mnemonicParsing="false" onMouseClicked="#showAddEvent" text="Add event/reminder" />
       <Label layoutX="531.0" layoutY="58.0" text="SUN">
          <font>
             <Font size="25.0" />
@@ -308,5 +310,201 @@
             <Font size="25.0" />
          </font>
       </Label>
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="88.0" text="Setting" />
+      <Button layoutX="298.0" layoutY="12.0" mnemonicParsing="false" text="Month View" />
+      <TabPane layoutX="14.0" layoutY="88.0" prefHeight="578.0" prefWidth="386.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="All Event">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="505.0" prefWidth="386.0">
+                     <children>
+                        <Pane prefHeight="543.0" prefWidth="386.0">
+                           <children>
+                              <TableView fx:id="tableView" fixedCellSize="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="488.0" prefWidth="386.0">
+                                 <columns>
+                                    <TableColumn fx:id="numECol" prefWidth="43.0" text="#" />
+                                    <TableColumn fx:id="eventCol" prefWidth="133.0" text="Event" />
+                                    <TableColumn fx:id="ownerCol" prefWidth="97.0" text="Owner" />
+                                    <TableColumn fx:id="timeECol" prefWidth="113.0" text="Time" />
+                                 </columns>
+                              </TableView>
+                              <Button layoutX="311.0" layoutY="498.0" mnemonicParsing="false" text="Delete" />
+                              <Button layoutX="223.0" layoutY="498.0" mnemonicParsing="false" text="Update" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="All Reminder">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Pane prefHeight="539.0" prefWidth="386.0" />
+                        <TableView fx:id="tableView1" fixedCellSize="0.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="488.0" prefWidth="387.0">
+                           <columns>
+                              <TableColumn fx:id="numRCol" prefWidth="43.0" text="#" />
+                              <TableColumn fx:id="reminderCol" prefWidth="128.0" text="Reminder" />
+                              <TableColumn fx:id="timeRCol" prefWidth="125.0" text="Time" />
+                              <TableColumn fx:id="repeatCol" prefWidth="90.0" text="Repeat" />
+                           </columns>
+                        </TableView>
+                        <Button layoutX="311.0" layoutY="498.0" mnemonicParsing="false" text="Delete" />
+                        <Button layoutX="223.0" layoutY="498.0" mnemonicParsing="false" text="Update" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Detail">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Pane prefHeight="541.0" prefWidth="386.0">
+                           <children>
+                              <ScrollPane prefHeight="489.0" prefWidth="386.0">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="388.0">
+                                       <children>
+                                          <Pane prefHeight="750.0" prefWidth="367.0">
+                                             <children>
+                                                <Label layoutX="14.0" layoutY="14.0" text="Event:">
+                                                   <font>
+                                                      <Font size="25.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label layoutX="14.0" layoutY="60.0" text="Owner:">
+                                                   <font>
+                                                      <Font size="20.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label layoutX="14.0" layoutY="102.0" text="Start time:">
+                                                   <font>
+                                                      <Font size="20.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label layoutX="14.0" layoutY="174.0" text="End time:">
+                                                   <font>
+                                                      <Font size="20.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label layoutX="13.0" layoutY="363.0" text="Notification before:">
+                                                   <font>
+                                                      <Font size="20.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label layoutX="13.0" layoutY="253.0" text="Guest List">
+                                                   <font>
+                                                      <Font size="20.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea layoutX="13.0" layoutY="292.0" prefHeight="57.0" prefWidth="341.0" wrapText="true" />
+                                                <TextArea layoutX="13.0" layoutY="440.0" prefHeight="57.0" prefWidth="341.0" wrapText="true" />
+                                                <Label layoutX="13.0" layoutY="401.0" text="Location">
+                                                   <font>
+                                                      <Font size="20.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label layoutX="13.0" layoutY="526.0" text="Description">
+                                                   <font>
+                                                      <Font size="20.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea layoutX="13.0" layoutY="565.0" prefHeight="161.0" prefWidth="341.0" wrapText="true" />
+                                                <TextField layoutX="90.0" layoutY="17.0" prefHeight="31.0" prefWidth="274.0" />
+                                                <TextField layoutX="91.0" layoutY="60.0" prefHeight="31.0" prefWidth="273.0" />
+                                             </children>
+                                          </Pane>
+                                          <DatePicker fx:id="startDate" layoutX="229.0" layoutY="137.0" prefHeight="31.0" prefWidth="133.0" />
+                                          <ComboBox id="startAmPm" fx:id="startAmPm" layoutX="116.0" layoutY="137.0" prefHeight="31.0" prefWidth="107.0" promptText="AM/PM">
+                                             <items>
+                                                <FXCollections fx:factory="observableArrayList">
+                                                   <String fx:id="AMs" fx:value="AM" />
+                                                   <String fx:id="PMs" fx:value="PM" />
+                                                </FXCollections>
+                                             </items>
+                                          </ComboBox>
+                                          <ComboBox id="startHrs" fx:id="startHrs" editable="true" layoutX="13.0" layoutY="137.0" prefHeight="31.0" prefWidth="100.0">
+                                             <items>
+                                                <FXCollections fx:factory="observableArrayList">
+                                                   <String fx:id="0100s" fx:value="01:00" />
+                                                   <String fx:id="0130s" fx:value="01:30" />
+                                                   <String fx:id="0200s" fx:value="02:00" />
+                                                   <String fx:id="0230s" fx:value="02:30" />
+                                                   <String fx:id="0300s" fx:value="03:00" />
+                                                   <String fx:id="0330s" fx:value="03:30" />
+                                                   <String fx:id="0400s" fx:value="04:00" />
+                                                   <String fx:id="0430s" fx:value="04:30" />
+                                                   <String fx:id="0500s" fx:value="05:00" />
+                                                   <String fx:id="0530s" fx:value="05:30" />
+                                                   <String fx:id="0600s" fx:value="06:00" />
+                                                   <String fx:id="0630s" fx:value="06:30" />
+                                                   <String fx:id="0700s" fx:value="07:00" />
+                                                   <String fx:id="0730s" fx:value="07:30" />
+                                                   <String fx:id="0800s" fx:value="08:00" />
+                                                   <String fx:id="0830s" fx:value="08:30" />
+                                                   <String fx:id="0900s" fx:value="09:00" />
+                                                   <String fx:id="0930s" fx:value="09:30" />
+                                                   <String fx:id="1000s" fx:value="10:00" />
+                                                   <String fx:id="1030s" fx:value="10:30" />
+                                                   <String fx:id="1100s" fx:value="11:00" />
+                                                   <String fx:id="1130s" fx:value="11:30" />
+                                                   <String fx:id="1200s" fx:value="12:00" />
+                                                   <String fx:id="1230s" fx:value="12:30" />
+                                                </FXCollections>
+                                             </items>
+                                          </ComboBox>
+                                          <ComboBox id="startHrs" fx:id="startHrs1" editable="true" layoutX="13.0" layoutY="207.0" prefHeight="31.0" prefWidth="100.0">
+                                             <items>
+                                                <FXCollections fx:factory="observableArrayList">
+                                                   <String fx:id="0100s1" fx:value="01:00" />
+                                                   <String fx:id="0130s1" fx:value="01:30" />
+                                                   <String fx:id="0200s1" fx:value="02:00" />
+                                                   <String fx:id="0230s1" fx:value="02:30" />
+                                                   <String fx:id="0300s1" fx:value="03:00" />
+                                                   <String fx:id="0330s1" fx:value="03:30" />
+                                                   <String fx:id="0400s1" fx:value="04:00" />
+                                                   <String fx:id="0430s1" fx:value="04:30" />
+                                                   <String fx:id="0500s1" fx:value="05:00" />
+                                                   <String fx:id="0530s1" fx:value="05:30" />
+                                                   <String fx:id="0600s1" fx:value="06:00" />
+                                                   <String fx:id="0630s1" fx:value="06:30" />
+                                                   <String fx:id="0700s1" fx:value="07:00" />
+                                                   <String fx:id="0730s1" fx:value="07:30" />
+                                                   <String fx:id="0800s1" fx:value="08:00" />
+                                                   <String fx:id="0830s1" fx:value="08:30" />
+                                                   <String fx:id="0900s1" fx:value="09:00" />
+                                                   <String fx:id="0930s1" fx:value="09:30" />
+                                                   <String fx:id="1000s1" fx:value="10:00" />
+                                                   <String fx:id="1030s1" fx:value="10:30" />
+                                                   <String fx:id="1100s1" fx:value="11:00" />
+                                                   <String fx:id="1130s1" fx:value="11:30" />
+                                                   <String fx:id="1200s1" fx:value="12:00" />
+                                                   <String fx:id="1230s1" fx:value="12:30" />
+                                                </FXCollections>
+                                             </items>
+                                          </ComboBox>
+                                          <ComboBox id="startAmPm" fx:id="startAmPm1" layoutX="116.0" layoutY="207.0" prefHeight="31.0" prefWidth="107.0" promptText="AM/PM">
+                                             <items>
+                                                <FXCollections fx:factory="observableArrayList">
+                                                   <String fx:id="AMs1" fx:value="AM" />
+                                                   <String fx:id="PMs1" fx:value="PM" />
+                                                </FXCollections>
+                                             </items>
+                                          </ComboBox>
+                                          <DatePicker fx:id="startDate1" layoutX="229.0" layoutY="207.0" prefHeight="31.0" prefWidth="133.0" />
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </ScrollPane>
+                           </children>
+                        </Pane>
+                        <Button layoutX="223.0" layoutY="498.0" mnemonicParsing="false" text="Update" />
+                        <Button layoutX="311.0" layoutY="498.0" mnemonicParsing="false" text="Delete" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
     </children>
 </Pane>
