@@ -19,6 +19,7 @@ public class NotiController {
     @FXML
     void initialize(){
         stop.setVisible(false);
+        stop.setDisable(true);
     }
 
     public void closeMessage(){

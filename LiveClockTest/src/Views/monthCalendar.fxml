@@ -9,10 +9,8 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MonthController">
    <children>
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#prevMonth" text="&lt;" />
-      <Button layoutX="745.0" layoutY="14.0" mnemonicParsing="false" onAction="#nextMonth" text="&gt;" />
-      <StackPane fx:id="month" layoutX="205.0" layoutY="14.0" prefHeight="70.0" prefWidth="175.0" />
-      <StackPane fx:id="year" layoutX="380.0" layoutY="10.0" prefHeight="70.0" prefWidth="175.0" />
+      <Button layoutX="16.0" layoutY="30.0" mnemonicParsing="false" onAction="#prevMonth" prefHeight="31.0" prefWidth="63.0" text="&lt;&lt;" />
+      <Button layoutX="721.0" layoutY="30.0" mnemonicParsing="false" onAction="#nextMonth" prefHeight="31.0" prefWidth="63.0" text="&gt;&gt;" />
       <HBox layoutX="16.0" layoutY="80.0" prefHeight="70.0" prefWidth="769.0">
          <children>
             <StackPane prefHeight="70.0" prefWidth="110.0">
@@ -102,5 +100,10 @@
             <StackPane onMouseClicked="#mouseClick" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>
+      <Label fx:id="yearMonth" alignment="CENTER" layoutX="219.0" layoutY="11.0" prefHeight="66.0" prefWidth="345.0" text="Label">
+         <font>
+            <Font size="45.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

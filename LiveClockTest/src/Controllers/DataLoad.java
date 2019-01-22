@@ -4,13 +4,15 @@ import Models.Event;
 import Models.User;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class DataLoad {
     public static ArrayList<Event> eventList = new ArrayList<>();
     public static User user;
 
-    public static void loadAlldata(){
+    public static void loadAllData(){
         deserializeEvent();
         deserializeUser();
     }
@@ -22,59 +24,61 @@ public class DataLoad {
 
     public static void serializeUser(){
         try {
-            FileOutputStream fileOut =
-                    new FileOutputStream("UserSaveData.txt");
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(user);
-            out.close();
-            fileOut.close();
-        } catch (IOException i) {
-            i.printStackTrace();
-        }
+            PrintWriter pw = new PrintWriter("UserSaveData.dat");
+            pw.close();
+            FileOutputStream fos = new FileOutputStream("UserSaveData.dat");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(user);
+            oos.close();
+            fos.close();
+        } catch (IOException i) { }
     }
     public static void deserializeUser(){
         try {
-            FileInputStream fileIn = new FileInputStream("UserSaveData.txt");
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            user = (User) in.readObject();
-            in.close();
-            fileIn.close();
+            FileInputStream fis = new FileInputStream("UserSaveData.dat");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            user = (User) ois.readObject();
+            ois.close();
+            fis.close();
         } catch (IOException i) {
-            i.printStackTrace();
+            try {
+                Files.createFile(Paths.get("UserSaveData.dat"));
+            } catch (IOException io){ }
         } catch (ClassNotFoundException c) {
             System.out.println("User class not found");
-            c.printStackTrace();
         }
     }
 
     public static void serializeEvent(){
         try {
-            FileOutputStream fos = new FileOutputStream("EventSaveData.txt");
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("EventSaveData.txt"));
+            PrintWriter pw = new PrintWriter("EventSaveData.dat");
+            pw.close();
+            FileOutputStream fos = new FileOutputStream("EventSaveData.dat");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(eventList);
             oos.close();
             fos.close();
         }
         catch (IOException ioe) {
-            ioe.printStackTrace();
         }
     }
 
     public static void deserializeEvent(){
         try {
-            FileInputStream fis = new FileInputStream("EventSaveData.txt");
+            FileInputStream fis = new FileInputStream("EventSaveData.dat");
             ObjectInputStream ois = new ObjectInputStream(fis);
             eventList = (ArrayList) ois.readObject();
             ois.close();
             fis.close();
         }
         catch (IOException ioe) {
-            ioe.printStackTrace();
+            try {
+                Files.createFile(Paths.get("EventSaveData.dat"));
+            } catch (IOException io){ }
             return;
         }
         catch (ClassNotFoundException c) {
             System.out.println("Class not found");
-            c.printStackTrace();
             return;
         }
 

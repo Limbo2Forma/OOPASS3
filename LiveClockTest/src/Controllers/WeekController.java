@@ -1,27 +1,20 @@
 package Controllers;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class WeekController {
     private LocalDate currentSun;
-    @FXML    private StackPane month;
-    @FXML    private StackPane year;
-    @FXML    private GridPane weekDay;
-    @FXML    private GridPane gridDays;
+    @FXML private GridPane weekDay;
+    @FXML private GridPane gridDays;
+    @FXML private Label monthYear;
     private int clickedCol, clickedRow;
 
     @FXML
@@ -35,32 +28,6 @@ public class WeekController {
             populateDay(currentSun.plusDays(i), i);
         }
         populateMonth(currentSun);
-    }
-
-    private void loadFXML(String path,String title){
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
-            Parent root1 = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setTitle(title);
-            stage.setResizable(false);
-            stage.setScene(new Scene(root1));
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.showAndWait();
-        } catch (Exception ioe){
-            System.out.println(title);
-            ioe.printStackTrace();
-        }
-    }
-
-    @FXML
-    private void showSetting(){
-        loadFXML("/Views/setting.fxml","Setting");
-    }
-
-    @FXML
-    private void showAddEvent(){
-        loadFXML("/Views/event.fxml","Add new event/reminder");
     }
 
     //Edit time string
@@ -107,12 +74,8 @@ public class WeekController {
     private void populateMonth(LocalDate thisSun){
         gridDays.getChildren().get(clickedCol * 24 + clickedRow).setStyle("-fx-background-color: null");
         weekDay.getChildren().clear();
-        month.getChildren().clear();
-        year.getChildren().clear();
-        Text label1 = new Text(""+thisSun.getMonth());
-        Text label2 = new Text(""+thisSun.getYear());
-        month.getChildren().add(label1);
-        year.getChildren().add(label2);
+        String setMonthYear = thisSun.getMonth() + " " + thisSun.getYear();
+        monthYear.setText(setMonthYear);
         for (int i = 0; i < 7; i++) {
             populateDay(thisSun.plusDays(i),i);
         }

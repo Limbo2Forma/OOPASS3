@@ -28,12 +28,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/Views/weekView.fxml"));
+        DataLoad.deserializeEvent();
+        Parent root = FXMLLoader.load(getClass().getResource("/Views/View.fxml"));
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
         primaryStage.setTitle("Week Calendar");
-        Platform.setImplicitExit(false);
-        DataLoad.loadAlldata();
+        DataLoad.loadAllData();
         primaryStage.show();
 
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
@@ -44,7 +44,7 @@ public class Main extends Application {
         clock.setCycleCount(Animation.INDEFINITE);
         clock.play();
         primaryStage.setOnCloseRequest((WindowEvent event1) -> {
-            //DataLoad.serializeEvent();
+            DataLoad.saveAllData();
         });
     }
 

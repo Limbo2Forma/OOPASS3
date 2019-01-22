@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.DatePickerFormat;
 import Models.Event;
 import Models.Notification;
 import javafx.animation.Animation;
@@ -11,7 +12,6 @@ import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
-import javafx.util.StringConverter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -21,6 +21,7 @@ public class EventController {
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a dd/MM/yyyy");
     private String errorMessage = "";
     private Notification notification = new Notification();
+    private DatePickerFormat dpf = new DatePickerFormat();
 
     @FXML private Label time;
 
@@ -41,25 +42,7 @@ public class EventController {
 
     @FXML private TextArea email;
     @FXML private Button addEvent;
-
-    //set DatePicker to unable to pick previous day than today
-    private Callback<DatePicker, DateCell> getDayCellFactory() {
-        return new Callback<DatePicker, DateCell>() {
-            @Override
-            public DateCell call(final DatePicker datePicker) {
-                return new DateCell() {
-                    @Override
-                    public void updateItem(LocalDate item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (item.isBefore(LocalDate.now())){
-                            setDisable(true);
-                            setStyle("-fx-background-color: #ffc0cb;");
-                        }
-                    }
-                };
-            }
-        };
-    }
+    @FXML private Button closeEvent;
 
     @FXML
     public void setEvent(){     //register Event into ArrayList
@@ -70,8 +53,8 @@ public class EventController {
         }
         //get event owner
         String owner = this.owner.getText();
-        if (title.equals("")){      //error msg if blank
-            owner = DataLoad.user.getName();
+        if (owner.equals("")){      //error msg if blank
+            owner = DataLoad.user.name;
         }
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -122,15 +105,13 @@ public class EventController {
             this.errorMessage = this.errorMessage + "Invalid end time input\n" +
                     "Please check if hours input are correct, include AM/PM.\n\n";
         }
-        String guestList = DataLoad.user.getMail() + "'," + email.getText();  //add owner mail into the list also
+        String guestList = email.getText();  //not have yet currently, add owner mail into the list also
         if (!notification.checkMultiEmail(guestList) && !guestList.equals("")){
             this.errorMessage = this.errorMessage + "Invalid email address(es).\n\n";
         }
-        if (guestList.equals("")){
-            guestList = "None";
-        }
 
         if (this.errorMessage.equals("")){  //print out event created and add created event to arrayList
+            addEvent.setDisable(true);
             DataLoad.eventList.add(new Event(title,startTime,endTime,owner,location,notiTime,guestList,describe));
             Stage stage = (Stage) addEvent.getScene().getWindow();
             notification.sendNotification("Event Created","Event " + title + " created successfully",false);
@@ -143,39 +124,17 @@ public class EventController {
         }
     }
 
-    //set DatePicker formatting to dd/MM/yyyy
-    private void setDatePickerFormat(DatePicker dp){
-        StringConverter<LocalDate> converter = new StringConverter<LocalDate>() {
-            DateTimeFormatter dateFormatter =
-                    DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            @Override
-            public String toString(LocalDate date) {
-                if (date != null) {
-                    return dateFormatter.format(date);
-                } else {
-                    return "";
-                }
-            }
-            @Override
-            public LocalDate fromString(String string) {
-                if (string != null && !string.isEmpty()) {
-                    return LocalDate.parse(string, dateFormatter);
-                } else {
-                    return null;
-                }
-            }
-        };
-        dp.setConverter(converter);
-        dp.setPromptText("dd/MM/yyyy");
-
-        Callback<DatePicker, DateCell> dayCellFactory = this.getDayCellFactory();
-        dp.setDayCellFactory(dayCellFactory);
+    @FXML
+    public void closeAddEvent(){
+        Stage stage = (Stage) closeEvent.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
     public void initialize() {
-        setDatePickerFormat(startDate);
-        setDatePickerFormat(endDate);
+        dpf.setDatePickerFormat(startDate);
+        dpf.setDatePickerFormat(endDate);
+        addEvent.setDisable(false);
         //use timeline to loop after 1 second
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             time.setText(LocalDateTime.now().withSecond(0).withNano(0).format(this.formatter));

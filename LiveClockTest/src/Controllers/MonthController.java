@@ -18,49 +18,28 @@ import java.util.ResourceBundle;
 public class MonthController implements Initializable {
     private LocalDate firstSun;
     private LocalDate currentYearMonth;
-    @FXML private StackPane month;
-    @FXML private StackPane year;
+    @FXML private Label yearMonth;
     @FXML private GridPane calendar;
     private int clickCol, clickRow;
 
     public void initialize(URL url, ResourceBundle rb){
         LocalDate day = LocalDate.of(LocalDate.now().getYear(),LocalDate.now().getMonth(),1);
         currentYearMonth = LocalDate.now();
-        while (!day.getDayOfWeek().toString().equals("SUNDAY")) {
-            day = day.minusDays(1);
-        }
+        findFirstSunday(day);
         firstSun = day;
-        for (int i = 0; i < 7; i++){
-            for (int j = 0; j < 5; j++){
-                populateDay(firstSun.plusDays((7*j)+i),i,j);
-            }
-        }
-        populateMonth(currentYearMonth);
     }
     @FXML
     private void nextMonth(){
-        calendar.getChildren().clear();
-        month.getChildren().clear();
-        year.getChildren().clear();
         currentYearMonth = currentYearMonth.plusMonths(1);
-        LocalDate firstSun = LocalDate.of(currentYearMonth.getYear(),currentYearMonth.getMonth(),1);
-        while (!firstSun.getDayOfWeek().toString().equals("SUNDAY")) {
-            firstSun = firstSun.minusDays(1);
-        }
-        for (int i = 0; i < 7; i++){
-            for (int j = 0; j < 5; j++){
-                populateDay(firstSun.plusDays((7*j)+i),i,j);
-            }
-        }
-        populateMonth(currentYearMonth);
+        populateMonth();
     }
     @FXML
     private void prevMonth(){
-        calendar.getChildren().clear();
-        month.getChildren().clear();
-        year.getChildren().clear();
         currentYearMonth = currentYearMonth.minusMonths(1);
-        LocalDate firstSun = LocalDate.of(currentYearMonth.getYear(),currentYearMonth.getMonth(),1);
+        populateMonth();
+
+    }
+    private void findFirstSunday(LocalDate firstSun){
         while (!firstSun.getDayOfWeek().toString().equals("SUNDAY")) {
             firstSun = firstSun.minusDays(1);
         }
@@ -69,13 +48,14 @@ public class MonthController implements Initializable {
                 populateDay(firstSun.plusDays((7*j)+i),i,j);
             }
         }
-        populateMonth(currentYearMonth);
+        yearMonth.setText(currentYearMonth.getMonth() + " " + currentYearMonth.getYear());
     }
-    private void populateMonth(LocalDate today){
-        Text label1 = new Text(""+today.getMonth());
-        Text label2 = new Text(""+today.getYear());
-        month.getChildren().add(label1);
-        year.getChildren().add(label2);
+
+    private void populateMonth(){
+        calendar.getChildren().clear();
+        LocalDate firstSun = LocalDate.of(currentYearMonth.getYear(),currentYearMonth.getMonth(),1);
+        findFirstSunday(firstSun);
+
     }
     private void populateDay(LocalDate day, int col, int row){
         Label label1 = new Label(""+day.getDayOfMonth());

@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.Notification;
 import Models.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -10,18 +11,16 @@ public class SettingController {
     @FXML TextField name;
     @FXML TextField mail;
     @FXML TextField pass;
-    @FXML Text passReq;
-    @FXML Rectangle rec;
 
     @FXML
     private void takeUser(){
-        User user = new User(name.getText(),mail.getText(),pass.getText());
-        System.out.println(user.name + " " + user.mail + " " + user.pass);
-    }
-
-    @FXML
-    private void showRequirement(){
-        passReq.setOpacity(1);
-        rec.setOpacity(1);
+        Notification noti = new Notification();
+        String email = mail.getText();
+        if (noti.checkMultiEmail(email)) {
+            User user = new User(name.getText(), mail.getText(), pass.getText());
+            System.out.println(user.name + " " + user.mail + " " + user.pass);
+        } else {
+            noti.sendNotification("Invalid user input","Invalid email",false);
+        }
     }
 }
