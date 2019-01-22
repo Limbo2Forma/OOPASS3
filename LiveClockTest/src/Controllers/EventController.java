@@ -53,7 +53,7 @@ public class EventController {
                         super.updateItem(item, empty);
                         if (item.isBefore(LocalDate.now())){
                             setDisable(true);
-                            setStyle("-fx-background-color: #686c6e;");
+                            setStyle("-fx-background-color: #ffc0cb;");
                         }
                     }
                 };
@@ -71,7 +71,7 @@ public class EventController {
         //get event owner
         String owner = this.owner.getText();
         if (title.equals("")){      //error msg if blank
-            owner = DataLoad.user.name;
+            owner = DataLoad.user.getName();
         }
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -122,7 +122,7 @@ public class EventController {
             this.errorMessage = this.errorMessage + "Invalid end time input\n" +
                     "Please check if hours input are correct, include AM/PM.\n\n";
         }
-        String guestList = email.getText();  //not have yet currently, add owner mail into the list also
+        String guestList = DataLoad.user.getMail() + "'," + email.getText();  //add owner mail into the list also
         if (!notification.checkMultiEmail(guestList) && !guestList.equals("")){
             this.errorMessage = this.errorMessage + "Invalid email address(es).\n\n";
         }

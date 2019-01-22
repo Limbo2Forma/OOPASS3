@@ -20,7 +20,7 @@ import javax.mail.internet.MimeMessage;
 public class Notification { // Pop Up window notification AND send email notification
     private Session session = sessionMail();
 
-    public void sendNotification(String title, String message, boolean isNoti){
+    public void sendNotification(String title, String message, boolean isNoti){ //sent noti via pop up
         Stage stage = new Stage();
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Views/notifyPopUp.fxml"));
