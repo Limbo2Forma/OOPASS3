@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.collections.FXCollections?>
+
+<Pane prefHeight="400.0" prefWidth="280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ReminderController">
+    <children>
+    <Label layoutX="13.0" layoutY="20.0" text="Reminder">
+        <font>
+            <Font size="30.0" />
+        </font></Label>
+        <VBox layoutX="13.0" layoutY="78.0" prefHeight="200.0" prefWidth="100.0">
+            <children>
+                <Label prefHeight="53.0" prefWidth="108.0" text="Title" />
+                <Label prefHeight="53.0" prefWidth="108.0" text="Date" />
+                <Label prefHeight="53.0" prefWidth="108.0" text="Time" />
+                <Label prefHeight="53.0" prefWidth="108.0" text="Repeat" />
+            </children>
+        </VBox>
+
+        <VBox layoutX="113.0" layoutY="78.0" prefHeight="200.0" prefWidth="153.0">
+            <children>
+                <TextField fx:id="titleField" prefHeight="53.0" prefWidth="231.0">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </TextField>
+                <DatePicker fx:id="datePicker" editable="false" prefHeight="53.0" prefWidth="238.0" />
+            <HBox prefHeight="53.0" prefWidth="153.0">
+               <children>
+            
+                            <ComboBox fx:id="timeMenuButton" editable="true" prefHeight="50.0" prefWidth="120.0" promptText="10:00">
+                          <items>
+                              <FXCollections fx:factory="observableArrayList">
+                                  <String fx:id="1230s" fx:value="00:30" />
+                                  <String fx:id="0100s" fx:value="01:00" />
+                                  <String fx:id="0130s" fx:value="01:30" />
+                                  <String fx:id="0200s" fx:value="02:00" />
+                                  <String fx:id="0230s" fx:value="02:30" />
+                                  <String fx:id="0300s" fx:value="03:00" />
+                                  <String fx:id="0330s" fx:value="03:30" />
+                                  <String fx:id="0400s" fx:value="04:00" />
+                                  <String fx:id="0430s" fx:value="04:30" />
+                                  <String fx:id="0500s" fx:value="05:00" />
+                                  <String fx:id="0530s" fx:value="05:30" />
+                                  <String fx:id="0600s" fx:value="06:00" />
+                                  <String fx:id="0630s" fx:value="06:30" />
+                                  <String fx:id="0700s" fx:value="07:00" />
+                                  <String fx:id="0730s" fx:value="07:30" />
+                                  <String fx:id="0800s" fx:value="08:00" />
+                                  <String fx:id="0830s" fx:value="08:30" />
+                                  <String fx:id="0900s" fx:value="09:00" />
+                                  <String fx:id="0930s" fx:value="09:30" />
+                                  <String fx:id="1000s" fx:value="10:00" />
+                                  <String fx:id="1030s" fx:value="10:30" />
+                                  <String fx:id="1100s" fx:value="11:00" />
+                                  <String fx:id="1130s" fx:value="11:30" />
+                                  <String fx:id="1200s" fx:value="12:00" />
+                              </FXCollections>
+                          </items>
+                                <value>
+                                    <String fx:value="10:00" />
+                                </value>
+                      </ComboBox>
+                   <ComboBox fx:id="ampmComboBox" layoutX="299.0" layoutY="281.0" prefHeight="50.0" prefWidth="121.0" promptText="AM">
+                       <items>
+                           <FXCollections fx:factory="observableArrayList">
+                               <String fx:id="AMs" fx:value="AM" />
+                               <String fx:id="PMs" fx:value="PM" />
+                           </FXCollections>
+                       </items>
+                       <value>
+                           <String fx:value="AM" />
+                       </value>
+                   </ComboBox>
+
+               </children>
+            </HBox>
+
+                <MenuButton fx:id="repeatMenuButton" mnemonicParsing="false" prefHeight="53.0" prefWidth="348.0" text="Daily">
+                    <items>
+                        <MenuItem fx:id="periodDaily" mnemonicParsing="true" onAction="#setRepeatMenuButtonDaily" text="Daily" />
+                        <MenuItem fx:id="periodWeekly" mnemonicParsing="true" onAction="#setRepeatMenuButtonWeekly" text="Weekly" />
+                        <MenuItem fx:id="periodWeekday" mnemonicParsing="true" onAction="#setRepeatMenuButtonWeekday" text="Weekday" />
+                        <MenuItem fx:id="periodMonthly" mnemonicParsing="true" onAction="#setRepeatMenuButtonMonthly" text="Monthly" />
+                        <MenuItem fx:id="periodYearly" mnemonicParsing="true" onAction="#setRepeatMenuButtonYearly" text="Yearly" />
+                        <MenuItem fx:id="periodCustom" mnemonicParsing="true" onAction="#setRepeatMenuButtonCustom" text="Custom" />
+                    </items>
+                </MenuButton>
+
+            </children>
+        </VBox>
+
+        <Button fx:id="createButton" layoutX="37.0" layoutY="311.0" mnemonicParsing="false" onAction="#acceptButtonPressed" prefHeight="38.0" prefWidth="69.0" text="Create" />
+        <Button fx:id="cancelButton" layoutX="162.0" layoutY="311.0" mnemonicParsing="false" onAction="#cancelButtonPressed" prefHeight="38.0" prefWidth="69.0" text="Cancel" />
+    </children>
+</Pane>

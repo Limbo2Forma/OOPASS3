@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="weekPane" prefHeight="41.0" prefWidth="324.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ReminderCustomController">
+   <children>
+      <ToggleButton fx:id="tbMon" layoutX="56.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" onAction="#setMon" text="MON">
+         <font>
+            <Font size="7.0" />
+         </font>
+      </ToggleButton>
+      <Label layoutX="15.0" layoutY="22.0" text="On:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Label>
+      <ToggleButton fx:id="tbTue" layoutX="97.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" onAction="#setTue" text="TUE">
+         <font>
+            <Font size="7.0" />
+         </font>
+      </ToggleButton>
+      <ToggleButton fx:id="tbWed" layoutX="137.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" onAction="#setWed" text="WED">
+         <font>
+            <Font size="7.0" />
+         </font>
+      </ToggleButton>
+      <ToggleButton fx:id="tbThu" layoutX="176.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" onAction="#setThu" text="THU">
+         <font>
+            <Font size="7.0" />
+         </font>
+      </ToggleButton>
+      <ToggleButton fx:id="tbFri" layoutX="215.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" onAction="#setFri" text="FRI">
+         <font>
+            <Font size="7.0" />
+         </font>
+      </ToggleButton>
+      <ToggleButton fx:id="tbSat" layoutX="254.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" onAction="#setSat" text="SAT">
+         <font>
+            <Font size="7.0" />
+         </font>
+      </ToggleButton>
+      <ToggleButton fx:id="tbSun" layoutX="291.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" onAction="#setSun" text="SUN">
+         <font>
+            <Font size="7.0" />
+         </font>
+      </ToggleButton>
+   </children>
+</Pane>
