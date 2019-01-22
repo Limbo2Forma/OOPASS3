@@ -2,6 +2,7 @@ package Controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -11,10 +12,9 @@ import java.time.LocalDate;
 
 public class WeekController {
     private LocalDate currentSun;
-    @FXML    private StackPane month;
-    @FXML    private StackPane year;
-    @FXML    private GridPane weekDay;
-    @FXML    private GridPane gridDays;
+    @FXML private GridPane weekDay;
+    @FXML private GridPane gridDays;
+    @FXML private Label monthYear;
     private int clickedCol, clickedRow;
 
     @FXML
@@ -74,12 +74,8 @@ public class WeekController {
     private void populateMonth(LocalDate thisSun){
         gridDays.getChildren().get(clickedCol * 24 + clickedRow).setStyle("-fx-background-color: null");
         weekDay.getChildren().clear();
-        month.getChildren().clear();
-        year.getChildren().clear();
-        Text label1 = new Text(""+thisSun.getMonth());
-        Text label2 = new Text(""+thisSun.getYear());
-        month.getChildren().add(label1);
-        year.getChildren().add(label2);
+        String setMonthYear = thisSun.getMonth() + " " + thisSun.getYear();
+        monthYear.setText(setMonthYear);
         for (int i = 0; i < 7; i++) {
             populateDay(thisSun.plusDays(i),i);
         }
