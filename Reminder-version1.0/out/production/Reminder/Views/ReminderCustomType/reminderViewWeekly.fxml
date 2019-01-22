@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="weekPane" prefHeight="55.0" prefWidth="324.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ReminderCustomController">
+   <children>
+      <ToggleButton layoutX="56.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="M">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </ToggleButton>
+      <Label layoutX="15.0" layoutY="22.0" text="On:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Label>
+      <ToggleButton layoutX="97.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="T">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </ToggleButton>
+      <ToggleButton layoutX="137.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="W">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </ToggleButton>
+      <ToggleButton layoutX="176.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="T">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </ToggleButton>
+      <ToggleButton layoutX="215.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="F">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </ToggleButton>
+      <ToggleButton layoutX="254.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="S">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </ToggleButton>
+      <ToggleButton layoutX="291.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="SU">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </ToggleButton>
+   </children>
+</Pane>
