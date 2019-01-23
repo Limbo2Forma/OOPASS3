@@ -27,9 +27,9 @@
                                     <TableColumn fx:id="timeCol" editable="false" maxWidth="220.0" minWidth="220.0" prefWidth="220.0" sortable="false" text="Time" />
                                  </columns>
                               </TableView>
-                              <Button layoutX="11.0" layoutY="498.0" mnemonicParsing="false" onMouseClicked="#deleteEventAll" text="Delete" />
-                              <Button layoutX="293.0" layoutY="498.0" mnemonicParsing="false" onMouseClicked="#updateEventAll" text="Edit Event" />
-                              <Button fx:id="addEvent" layoutX="147.0" layoutY="498.0" mnemonicParsing="false" onMouseClicked="#addEventAll" text="New Event" />
+                              <Button layoutX="11.0" layoutY="502.0" mnemonicParsing="false" onMouseClicked="#deleteEventAll" text="Delete" />
+                              <Button layoutX="293.0" layoutY="502.0" mnemonicParsing="false" onMouseClicked="#updateEventAll" text="Edit Event" />
+                              <Button fx:id="addEvent" layoutX="147.0" layoutY="502.0" mnemonicParsing="false" onMouseClicked="#addEventAll" text="New Event" />
                            </children>
                         </Pane>
                      </children></AnchorPane>
@@ -41,8 +41,8 @@
                      <children>
                         <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="386.0">
                            <children>
-                              <Button fx:id="deleteEvent" layoutX="311.0" layoutY="498.0" mnemonicParsing="false" onMouseClicked="#deleteEvent" text="Delete" />
-                              <Button fx:id="updateAndAdd" layoutX="202.0" layoutY="498.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#updateAndAddEvent" prefHeight="30.0" prefWidth="100.0" text="Update" />
+                              <Button fx:id="deleteEvent" layoutX="311.0" layoutY="502.0" mnemonicParsing="false" onMouseClicked="#deleteEvent" text="Delete" />
+                              <Button fx:id="updateAndAdd" layoutX="202.0" layoutY="502.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#updateAndAddEvent" prefHeight="30.0" prefWidth="100.0" text="Update" />
                               <ScrollPane prefHeight="489.0" prefWidth="386.0">
                                  <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="388.0">
@@ -202,8 +202,8 @@
                               <TableColumn fx:id="repeatCol" prefWidth="90.0" text="Repeat" />
                            </columns>
                         </TableView>
-                        <Button layoutX="311.0" layoutY="498.0" mnemonicParsing="false" text="Delete" />
-                        <Button layoutX="223.0" layoutY="498.0" mnemonicParsing="false" text="Update" />
+                        <Button layoutX="311.0" layoutY="502.0" mnemonicParsing="false" text="Delete" />
+                        <Button layoutX="223.0" layoutY="502.0" mnemonicParsing="false" text="Update" />
                      </children>
                   </AnchorPane>
             </content>

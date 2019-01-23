@@ -3,14 +3,17 @@ package Controllers;
 import Models.Notification;
 import Models.User;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class SettingController {
     @FXML TextField name;
     @FXML TextField mail;
     @FXML TextField pass;
+    @FXML Button done;
 
     @FXML
     private void takeUser(){
@@ -28,5 +31,7 @@ public class SettingController {
         } else {
             noti.sendNotification("Invalid user input","Invalid email",false);
         }
+        Stage stage = (Stage) done.getScene().getWindow();
+        stage.close();
     }
 }

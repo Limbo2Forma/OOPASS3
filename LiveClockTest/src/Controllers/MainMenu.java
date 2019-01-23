@@ -152,6 +152,7 @@ public class MainMenu {
             DataLoad.eventList.remove(i);
             DataLoad.eventList.trimToSize();
         }
+        exitUpdateOrAdd();
     }
 
     @FXML
@@ -263,16 +264,29 @@ public class MainMenu {
                 DataLoad.eventList.get(number).setNotifyTime();
                 notification.sendNotification("Event Updated","Event " + title + " update successfully",false);
             }
-            detailEventTab.setDisable(true);
-            eventTab.setDisable(false);
-            reminderTab.setDisable(false);
-            tabPane.getSelectionModel().select(0);
-            refreshEventTable();
+            exitUpdateOrAdd();
         } else {
             //send pop up notification error message
             System.out.println(errorMessage);
             notification.sendNotification("Error input",errorMessage,false);
             errorMessage = "";
+        }
+    }
+
+    private void exitUpdateOrAdd(){
+        detailEventTab.setDisable(true);
+        eventTab.setDisable(false);
+        reminderTab.setDisable(false);
+        tabPane.getSelectionModel().select(0);
+        refreshEventTable();
+        if (menu.getText() == "Weekly"){
+        } else {
+            try {
+                showMonth();
+            } catch (Exception ex){
+                System.out.println("reshow error");
+                ex.printStackTrace();
+            }
         }
     }
 
@@ -282,11 +296,7 @@ public class MainMenu {
             DataLoad.eventList.remove(number);
             DataLoad.eventList.trimToSize();
         }
-        detailEventTab.setDisable(true);
-        eventTab.setDisable(false);
-        reminderTab.setDisable(false);
-        tabPane.getSelectionModel().select(0);
-        refreshEventTable();
+        exitUpdateOrAdd();
     }
 }
 

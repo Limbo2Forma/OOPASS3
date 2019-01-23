@@ -63,7 +63,7 @@
             </PasswordField>
          </children>
       </GridPane>
-      <Button layoutX="686.0" layoutY="300.0" mnemonicParsing="false" onAction="#takeUser" prefHeight="50.0" prefWidth="100.0" text="Done">
+      <Button fx:id="done" layoutX="686.0" layoutY="300.0" mnemonicParsing="false" onAction="#takeUser" prefHeight="50.0" prefWidth="100.0" text="Done">
          <font>
             <Font size="25.0" />
          </font>
