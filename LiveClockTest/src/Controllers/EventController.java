@@ -7,6 +7,8 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
@@ -113,9 +115,29 @@ public class EventController {
         if (this.errorMessage.equals("")){  //print out event created and add created event to arrayList
             addEvent.setDisable(true);
             DataLoad.eventList.add(new Event(title,startTime,endTime,owner,location,notiTime,guestList,describe));
+            for (Event event : DataLoad.eventList) {
+                System.out.println(event.getTitle());
+                System.out.println(event.getOwner());
+                System.out.println(event.getStartTime());
+                System.out.println(event.getEndTime());
+                System.out.println(event.getNotiTime());
+                System.out.println(event.getLocation());
+                System.out.println(event.getDescription());
+                System.out.println(event.getNotifyTime());
+                System.out.println("########");
+            }
             Stage stage = (Stage) addEvent.getScene().getWindow();
             notification.sendNotification("Event Created","Event " + title + " created successfully",false);
-            stage.close();
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Views/mainMenuView.fxml"));
+                Parent root1 = fxmlLoader.load();
+                MainMenu controller = fxmlLoader.getController();
+                controller.eventTable.getItems().add(DataLoad.eventList.get(DataLoad.eventList.size() - 1));
+                System.out.println("refreshed");
+                stage.close();
+            } catch (Exception e){
+                e.printStackTrace();
+            }
         } else {
             //send pop up notification error message
             System.out.println(errorMessage);

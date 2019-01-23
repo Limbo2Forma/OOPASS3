@@ -2,6 +2,7 @@ package Controllers;
 
 import Models.Event;
 import Models.User;
+import javafx.application.Platform;
 
 import java.io.*;
 import java.nio.file.Files;

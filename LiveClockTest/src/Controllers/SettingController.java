@@ -17,8 +17,14 @@ public class SettingController {
         Notification noti = new Notification();
         String email = mail.getText();
         if (noti.checkMultiEmail(email)) {
-            User user = new User(name.getText(), mail.getText(), pass.getText());
-            System.out.println(user.name + " " + user.mail + " " + user.pass);
+            if (DataLoad.user == null) {
+                DataLoad.user = new User(name.getText(),email,pass.getText());
+                System.out.println(DataLoad.user.name + " " + DataLoad.user.mail + " " + DataLoad.user.pass);
+            } else {
+                DataLoad.user.setName(name.getText());
+                DataLoad.user.setMail(email);
+                DataLoad.user.setPass(pass.getText());
+            }
         } else {
             noti.sendNotification("Invalid user input","Invalid email",false);
         }

@@ -6,7 +6,6 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -29,7 +28,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         DataLoad.deserializeEvent();
-        Parent root = FXMLLoader.load(getClass().getResource("/Views/View.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Views/mainMenuView.fxml"));
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
         primaryStage.setTitle("Week Calendar");
@@ -39,7 +38,7 @@ public class Main extends Application {
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             checkEvent();
         }),
-                new KeyFrame(Duration.seconds(20))
+                new KeyFrame(Duration.seconds(55))
         );
         clock.setCycleCount(Animation.INDEFINITE);
         clock.play();
