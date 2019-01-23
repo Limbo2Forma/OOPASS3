@@ -298,5 +298,41 @@ public class MainMenu {
         }
         exitUpdateOrAdd();
     }
-}
 
+    @FXML
+    public void chooseEvent() throws Exception{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Views/weekCalendar.fxml"));
+        Parent root1 = fxmlLoader.load();
+        WeekController controller = fxmlLoader.getController();
+
+        ObservableList<Event> selectedEvents;
+        String selectedDate = "";
+        String selectedTime = "";
+        int colIdx = 0, rowIdx = 0;
+        selectedEvents = eventTable.getSelectionModel().getSelectedItems();
+        for (Event event : selectedEvents) {
+            String[] time = event.getStartTime().split(" ");
+            selectedDate = time[2];
+            selectedTime = time[0].charAt(1) + " " + time[1];
+            if (time[0].charAt(0) != '0'){
+                selectedTime = time[0].charAt(0) + selectedTime;
+            }
+        }
+        for (int i = 0; i < 7; i++) {
+            if (controller.weekDay.getChildren().get(i).getId().equals(selectedDate)) {
+                colIdx = i;
+                //System.out.println(colIdx);
+                break;
+            }
+        }
+        for (int i = 0; i < 24; i++){
+            if (controller.timeValue[i].equals(selectedTime)){
+                rowIdx = i;
+                //System.out.println(rowIdx);
+                break;
+            }
+        }
+        controller.allTimes.get((colIdx+1)*24 + rowIdx).setClicked(true);
+        controller.refresh();
+    }
+}
