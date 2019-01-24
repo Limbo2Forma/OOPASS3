@@ -4,10 +4,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="388.0" prefWidth="535.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.NotiController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="121.0" prefWidth="352.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.NotiController">
    <children>
-      <Button fx:id="closeMsg" layoutX="456.0" layoutY="330.0" mnemonicParsing="false" onMouseClicked="#closeMessage" text="Close" />
-      <Label fx:id="errorMsg" layoutX="49.0" layoutY="33.0" text="Label" wrapText="true" />
-      <Button fx:id="stop" layoutX="331.0" layoutY="330.0" mnemonicParsing="false" onMouseClicked="#stopProgram" text="Stop program" />
+      <Button fx:id="closeMsg" layoutX="244.0" layoutY="77.0" mnemonicParsing="false" onMouseClicked="#closeMessage" text="Close" />
+      <Label fx:id="errorMsg" layoutX="21.0" layoutY="24.0" text="Label" wrapText="true" />
+      <Button fx:id="stop" layoutX="49.0" layoutY="77.0" mnemonicParsing="false" onMouseClicked="#stopProgram" text="Stop program" />
    </children>
 </Pane>

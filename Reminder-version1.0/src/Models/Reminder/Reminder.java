@@ -19,56 +19,73 @@ public class Reminder implements Serializable {
         this.repeat = repeat;
     }
 
-    public Reminder(String title, String time, String typeOfRepeat){        // Create a preset reminder object of daily, weekly, monthly...
-        // typeOfRepeat must be either "Daily", "Weekly","Weekday", "Monthly", "Yearly"
+    public Reminder(String title, String time, String typeOfRepeat, String checkStr){
         this.title = title;
         this.time = time;
-
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a dd/MM/yyyy");
         LocalDateTime selectedTime = LocalDateTime.parse(this.time, formatter);
-        switch(typeOfRepeat){
-            case "Daily":
-            {
-                boolean[] tempDay = {false,false,false,false,false,false,false};
-                int[] tempDate = {0,0};
-                this.repeat = new RepeatType(1, "Daily", "never","",0,tempDay,tempDate);
-                break;
-            }
-            case "Weekly":
-            {
-                boolean[] tempDay = {false,false,false,false,false,false,false};
-                int[] tempDate = {0,0};
-                this.repeat = new RepeatType(1, "Weekly", "never","",0,tempDay,tempDate);
-                break;
-            }
-            case "Weekday":
-            {
-                boolean[] tempDay = {false,true,true,true,true,true,false};
-                int[] tempDate = {0,0};
-                this.repeat = new RepeatType(1, "Weekly", "never","",0,tempDay,tempDate);
-                break;
-            }
-            case "Monthly":
-            {
-                boolean[] tempDay = {false,false,false,false,false,false,false};
-                int[] tempDate = {selectedTime.getDayOfMonth(),0};
-                this.repeat = new RepeatType(1, "Monthly", "never","",0,tempDay,tempDate);
-                break;
-            }
-            case "Yearly":
-            {
-                boolean[] tempDay = {false,false,false,false,false,false,false};
-                int[] tempDate = {0,0};
-                this.repeat = new RepeatType(1, "Yearly", "never","",0,tempDay,tempDate);
-                break;
-            }
-            default:
-            {
-                System.out.println("Error repeat type string");
-                break;
-            }
+        boolean[] tempDay = {false,false,false,false,false,false};
+        int[] tempDate = {0,0};
+        if(checkStr.equals("After")){
+            this.repeat = new RepeatType(1, typeOfRepeat, "never", 0, tempDay, tempDate);
+        }else if (checkStr.equals("On date")){
+            this.repeat = new RepeatType(1, typeOfRepeat, "never", "", tempDay, tempDate);
+        } else if (checkStr.equals("Never")){
+            this.repeat = new RepeatType(1,typeOfRepeat,"never",tempDay,tempDate);
         }
     }
+
+//    public Reminder(String title, String time, String typeOfRepeat, String checkStr){        // Create a preset reminder object of daily, weekly, monthly...
+//        // typeOfRepeat must be either "Daily", "Weekly","Weekday", "Monthly", "Yearly"
+//        this.title = title;
+//        this.time = time;
+//
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a dd/MM/yyyy");
+//        LocalDateTime selectedTime = LocalDateTime.parse(this.time, formatter);
+//        switch(typeOfRepeat){
+//            case "Daily":
+//            {
+//                boolean[] tempDay = {false,false,false,false,false,false};
+//                int[] tempDate = {0,0};
+//                this.repeat = new RepeatType(1, "Daily", "never", 0, tempDay, tempDate);
+//                this.repeat = new RepeatType(1, "Daily", "never", "", tempDay, tempDate);
+//                break;
+//            }
+//            case "Weekly":
+//            {
+//                boolean[] tempDay = {false,false,false,false,false,false};
+//                int[] tempDate = {0,0};
+//                this.repeat = new RepeatType(1, "Weekly", "never",0,tempDay,tempDate);
+//                break;
+//            }
+//            case "Weekday":
+//            {
+//                boolean[] tempDay = {false,true,true,true,true,false};
+//                int[] tempDate = {0,0};
+//                this.repeat = new RepeatType(1, "Weekly", "never", 0,tempDay,tempDate);
+//                break;
+//            }
+//            case "Monthly":
+//            {
+//                boolean[] tempDay = {false,false,false,false,false,false};
+//                int[] tempDate = {selectedTime.getDayOfMonth(),0};
+//                this.repeat = new RepeatType(1, "Monthly", "never", 0,tempDay,tempDate);
+//                break;
+//            }
+//            case "Yearly":
+//            {
+//                boolean[] tempDay = {false,false,false,false,false,false};
+//                int[] tempDate = {0,0};
+//                this.repeat = new RepeatType(1, "Yearly", "never",0,tempDay,tempDate);
+//                break;
+//            }
+//            default:
+//            {
+//                System.out.println("Error repeat type string");
+//                break;
+//            }
+//        }
+//    }
 
     public String getTitle() {
         return title;
@@ -89,8 +106,8 @@ public class Reminder implements Serializable {
     public RepeatType getRepeatType() {
         return repeat;
     }
-    public void setRepeatType(int repeatFrequency, String repeatPeriod, String endType, String endTime, boolean[] dayOfWeek, int[] dateForMonth,int afterTimes){
-        this.repeat = new RepeatType(repeatFrequency, repeatPeriod, endType, endTime,afterTimes, dayOfWeek, dateForMonth);;
+    public void setRepeatType(int repeatFrequency, String repeatPeriod, String endType, boolean[] dayOfWeek, int[] dateForMonth,int afterTimes){
+        this.repeat = new RepeatType(repeatFrequency, repeatPeriod, endType, afterTimes, dayOfWeek, dateForMonth);;
     }
 
 }

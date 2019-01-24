@@ -13,18 +13,49 @@ public class RepeatType implements Serializable {
 
     private int[] dateForMonth;
     private int afterTimes;
+
 // dateForMonth[1] = 0 means it is monthly reminder based on date, dateForMonth[1] = 0 means it is monthly reminder based on week
 // for repeatPeriod = "Monthly", example: dateForMonth[0] = 3 && dateForMonth[1] = 0 means monthly reminder every day 3 of the month
 // dateForMonth[1] != 0, for example dateForMonth[1] = 3 and dateForMonth[0] = 6 means reminder for every Saturday of the 3rd week
+    public RepeatType (String repeatPeriod){
+        this.repeatFrequency = 1;
+        this.repeatPeriod = repeatPeriod;
+        if(repeatPeriod.equals("Weekday")){
+            this.dayOfWeek = new boolean[7];
+            for (int i = 1; i<6;i++){
+                this.dayOfWeek[i] = true;
+            }
+        }
+    }
 
-    public RepeatType(int repeatFrequency, String repeatPeriod, String endType, String endTime, int afterTimes, boolean[] dayOfWeek, int[] dateForMonth){
+    public RepeatType(int repeatFrequency, String repeatPeriod, String endType, int afterTimes, boolean[] dayOfWeek, int[] dateForMonth){
+        this.repeatFrequency=repeatFrequency;
+        this.repeatPeriod=repeatPeriod;
+        this.endType=endType;
+        this.dayOfWeek = new boolean[7];
+        this.dayOfWeek=dayOfWeek;
+
+        this.dateForMonth=dateForMonth;
+        this.afterTimes=afterTimes;
+    }
+
+    public RepeatType(int repeatFrequency, String repeatPeriod, String endType, String endTime, boolean[] dayOfWeek, int[] dateForMonth){
         this.repeatFrequency=repeatFrequency;
         this.repeatPeriod=repeatPeriod;
         this.endType=endType;
         this.endTime=endTime;
+        this.dayOfWeek = new boolean[7];
         this.dayOfWeek=dayOfWeek;
         this.dateForMonth=dateForMonth;
-        this.afterTimes=afterTimes;
+    }
+
+    public RepeatType(int repeatFrequency, String repeatPeriod, String endType, boolean[] dayOfWeek, int[] dateForMonth){
+        this.repeatFrequency=repeatFrequency;
+        this.repeatPeriod=repeatPeriod;
+        this.endType=endType;
+        this.dayOfWeek = new boolean[7];
+        this.dayOfWeek=dayOfWeek;
+        this.dateForMonth=dateForMonth;
     }
 
     public int getRepeatFrequency() {
@@ -59,8 +90,8 @@ public class RepeatType implements Serializable {
         this.endTime = endTime;
     }
 
-    public boolean[] getDayOfWeek() {
-        return dayOfWeek;
+    public boolean getDayOfWeek(int index) {
+        return dayOfWeek[index];
     }
 
     public void setDayOfWeek(boolean[] dayOfWeek) {

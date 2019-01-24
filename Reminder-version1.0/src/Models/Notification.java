@@ -5,10 +5,8 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import Controllers.NotiController;
-
 import java.util.Properties;
 import java.util.regex.Pattern;
-
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;

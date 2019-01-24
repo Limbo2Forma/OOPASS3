@@ -10,7 +10,7 @@
 
 <Pane fx:id="weekPane" prefHeight="55.0" prefWidth="324.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ReminderCustomController">
    <children>
-      <ToggleButton layoutX="56.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="M">
+      <ToggleButton fx:id="tbMon" layoutX="56.0" layoutY="19.0" mnemonicParsing="false" onAction="#setMon" prefHeight="25.0" prefWidth="27.0" text="M">
          <font>
             <Font size="10.0" />
          </font>
@@ -19,32 +19,32 @@
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Label>
-      <ToggleButton layoutX="97.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="T">
+      <ToggleButton fx:id="tbTue" layoutX="97.0" layoutY="19.0" mnemonicParsing="false" onAction="#setTue" prefHeight="25.0" prefWidth="27.0" text="T">
          <font>
             <Font size="10.0" />
          </font>
       </ToggleButton>
-      <ToggleButton layoutX="137.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="W">
+      <ToggleButton fx:id="tbWed" layoutX="137.0" layoutY="19.0" mnemonicParsing="false" onAction="#setWed" prefHeight="25.0" prefWidth="27.0" text="W">
          <font>
             <Font size="10.0" />
          </font>
       </ToggleButton>
-      <ToggleButton layoutX="176.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="T">
+      <ToggleButton fx:id="tbThu" layoutX="176.0" layoutY="19.0" mnemonicParsing="false" onAction="#setThu" prefHeight="25.0" prefWidth="27.0" text="T">
          <font>
             <Font size="10.0" />
          </font>
       </ToggleButton>
-      <ToggleButton layoutX="215.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="F">
+      <ToggleButton fx:id="tbFri" layoutX="215.0" layoutY="19.0" mnemonicParsing="false" onAction="#setFri" prefHeight="25.0" prefWidth="27.0" text="F">
          <font>
             <Font size="10.0" />
          </font>
       </ToggleButton>
-      <ToggleButton layoutX="254.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="S">
+      <ToggleButton fx:id="tbSat" layoutX="254.0" layoutY="19.0" mnemonicParsing="false" onAction="#setSat" prefHeight="25.0" prefWidth="27.0" text="S">
          <font>
             <Font size="10.0" />
          </font>
       </ToggleButton>
-      <ToggleButton layoutX="291.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="SU">
+      <ToggleButton fx:id="tbSun" layoutX="291.0" layoutY="19.0" mnemonicParsing="false" onAction="#setSun" prefHeight="25.0" prefWidth="27.0" text="SU">
          <font>
             <Font size="10.0" />
          </font>

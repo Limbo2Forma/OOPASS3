@@ -32,11 +32,11 @@
                         <Font size="20.0" />
                     </font>
                 </TextField>
-                <DatePicker fx:id="datePicker" editable="false" prefHeight="53.0" prefWidth="238.0" />
+                <DatePicker fx:id="datePicker" prefHeight="53.0" prefWidth="238.0" promptText="dd/MM/yyyy" />
             <HBox prefHeight="53.0" prefWidth="153.0">
                <children>
             
-                            <ComboBox fx:id="timeMenuButton" editable="true" prefHeight="50.0" prefWidth="120.0" promptText="10:00">
+                            <ComboBox fx:id="timeMenuButton" editable="true" prefHeight="50.0" prefWidth="120.0">
                           <items>
                               <FXCollections fx:factory="observableArrayList">
                                   <String fx:id="1230s" fx:value="00:30" />

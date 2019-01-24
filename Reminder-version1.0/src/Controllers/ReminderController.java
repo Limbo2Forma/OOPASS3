@@ -1,9 +1,9 @@
 package Controllers;
 
-
 import Models.Notification;
 import Models.Reminder.Reminder;
 import Models.Reminder.RepeatType;
+import com.sun.istack.internal.localization.NullLocalizable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -64,42 +64,35 @@ public  class ReminderController {
         stage.setResizable(false);
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.showAndWait();
+        stage.show();
     }
 
     @FXML
     private void acceptButtonPressed(){
-
-        String timeStr ="";
+        String timeStr = "";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         try {
             timeStr = timeMenuButton.getValue() + " " + (String) ampmComboBox.getValue() + " " + datePicker.getValue().format(formatter);
         } catch (NullPointerException npe){
-            errorMessage = errorMessage + "Unspecified Date";
+            errorMessage = errorMessage + "Unspecified Date or Time";
         }
         if(!repeatMenuButton.getText().equals("Custom")){
             if(errorMessage.equals("")) {
                 try {
                     System.out.println("save reminder");
-                    DataLoad.reminderList.add(new Reminder(titleField.getText(), timeStr, repeatMenuButton.getText()));
+                    RepeatType newRepeat = new RepeatType(repeatMenuButton.getText());
+                    DataLoad.reminderList.add(new Reminder(titleField.getText(), timeStr, newRepeat));
                 } catch (Exception e) {
                     System.out.println("Error creating a Reminder");
                 }
             } else {
                 notification.sendNotification("Error creating Reminder", errorMessage, false);
+                errorMessage="";
             }
-        } else {
-            // THIS IS FOR CUSTOM CLASS, IT IS NOT DONE
-            if(errorMessage.equals("")) {
-                try {
-                    System.out.println("save custom reminder");
-                    //DataLoad.reminderList.add(new Reminder(titleField.getText(),timeStr,temporaryReminder));
-                } catch (Exception e) {
-                    System.out.println("Error creating a custom reminder");
-                }
-            } else {
-                notification.sendNotification("Error creating Reminder", errorMessage, false);
-            }
+        }
+        if(!timeStr.equals("") || !titleField.getText().equals("")) {
+            Stage stage = (Stage) createButton.getScene().getWindow();
+            stage.close();
         }
     }
 
