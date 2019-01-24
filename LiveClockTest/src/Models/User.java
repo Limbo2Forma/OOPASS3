@@ -3,13 +3,6 @@ package Models;
 import java.io.Serializable;
 
 public class User implements Serializable {
-    public String name, mail, pass;
-    public User(String name, String mail, String pass){
-        this.name = name;
-        this.mail = mail;
-        this.pass = pass;
-    }
-
     public String getName() {
         return name;
     }
@@ -31,6 +24,13 @@ public class User implements Serializable {
     }
 
     public void setPass(String pass) {
+        this.pass = pass;
+    }
+
+    public String name, mail, pass;
+    public User(String name, String mail, String pass){
+        this.name = name;
+        this.mail = mail;
         this.pass = pass;
     }
 }

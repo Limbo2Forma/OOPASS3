@@ -53,9 +53,8 @@ public class Event implements Serializable {
         return notifyTime;
     }
 
-    public void setNotifyTime() {
-        this.notifyTime = LocalDateTime.parse(startTime,DateTimeFormatter.ofPattern("hh:mm a dd/MM/yyyy")).
-                minusMinutes(notiTime).format(DateTimeFormatter.ofPattern("hh:mm a dd/MM/yyyy"));
+    public void setNotifyTime(String notifyTime) {
+        this.notifyTime = notifyTime;
     }
 
     public String getOwner() {

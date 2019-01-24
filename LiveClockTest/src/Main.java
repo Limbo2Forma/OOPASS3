@@ -6,6 +6,7 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -27,23 +28,23 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        DataLoad.deserializeEvent();
-        Parent root = FXMLLoader.load(getClass().getResource("/Views/mainMenuView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Views/weekView.fxml"));
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
         primaryStage.setTitle("Week Calendar");
-        DataLoad.loadAllData();
+        Platform.setImplicitExit(false);
+        DataLoad.loadAlldata();
         primaryStage.show();
 
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             checkEvent();
         }),
-                new KeyFrame(Duration.seconds(55))
+                new KeyFrame(Duration.seconds(20))
         );
         clock.setCycleCount(Animation.INDEFINITE);
         clock.play();
         primaryStage.setOnCloseRequest((WindowEvent event1) -> {
-            DataLoad.saveAllData();
+            //DataLoad.serializeEvent();
         });
     }
 
